@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom color variables matching the poster */
+:root {
+  --eco-navy: #1e293b;
+  --eco-blue: #0f172a;
+  --eco-green: #34d399;
+  --eco-green-light: #6ee7b7;
+  --eco-accent: #10b981;
+}
+
+/* Custom gradient backgrounds */
+.eco-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.eco-gradient-green {
+  background: linear-gradient(135deg, #059669 0%, #34d399 50%, #6ee7b7 100%);
+}
+
+/* Glowing effects */
+.glow-green {
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Animated background patterns */
+.pattern-bg {
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(52, 211, 153, 0.15) 1px, transparent 0);
+  background-size: 40px 40px;
+  animation: movePattern 20s linear infinite;
+}
+
+@keyframes movePattern {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #34d399;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
