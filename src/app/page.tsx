@@ -37,7 +37,7 @@ export default function Home() {
         
         <nav className="hidden md:flex space-x-8 text-gray-300">
           <Link href="#home" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Home</Link>
-          <Link href="#about" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">About</Link>
+          <Link href="/about" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">About</Link>
           <Link href="/tracks" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Tracks</Link>
           <Link href="#schedule" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Schedule</Link>
           <Link href="#sponsors" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Sponsors</Link>
