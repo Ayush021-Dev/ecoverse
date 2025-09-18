@@ -79,7 +79,7 @@ export default function Home() {
                 5th - 6th NOVEMBER
               </div>
               <div className="text-gray-400 text-sm">
-                48 Hours of Innovation
+                24 Hours of Innovation
               </div>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function Home() {
             <div className="text-gray-400 text-sm">Prize Pool</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold text-lime-400">48</div>
+            <div className="text-2xl md:text-3xl font-bold text-lime-400">24</div>
             <div className="text-gray-400 text-sm">Hours</div>
           </div>
         </div>
