@@ -37,7 +37,8 @@ export default function Home() {
         
         <nav className="hidden md:flex space-x-8 text-gray-300">
           <Link href="#home" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Home</Link>
-          <Link href="#about" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">About</Link>
+          <Link href="/about" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">About</Link>
+          <Link href="/tracks" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Tracks</Link>
           <Link href="#schedule" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Schedule</Link>
           <Link href="#sponsors" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Sponsors</Link>
           <Link href="#register" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Register</Link>
@@ -143,10 +144,13 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
           
-          <button className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105">
+          <Link
+            href="/tracks"
+            className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105"
+          >
             <span className="relative z-10">Explore Tracks</span>
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-          </button>
+          </Link>
         </div>
 
         {/* Stats Section */}
