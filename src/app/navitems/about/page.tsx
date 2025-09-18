@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Navbar from '../../components/Navbar/Navbar' // Adjust path as needed
+import Navbar from '../../components/Navbar/Navbar'
 
 export default function About() {
   return (
@@ -78,19 +78,14 @@ export default function About() {
 
             {/* Content Grid */}
             <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
-              {/* Left Column - Image Placeholder */}
               <div className="space-y-6">
-                <div className="bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-64 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-emerald-400 mb-2">
-                      <svg className="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2L15.09 8.26L22 9L16 14.74L17.18 21.02L12 18.77L6.82 21.02L8 14.74L2 9L8.91 8.26L12 2Z"/>
-                      </svg>
-                    </div>
-                    <p className="text-gray-300 text-sm">VIT Chennai Campus</p>
-                  </div>
+                <div className="bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-64 overflow-hidden">
+                  <img 
+                    src="/vit.jpg" 
+                    alt="VIT Chennai Campus" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-
                 {/* Quick Stats */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-emerald-950/50 border border-emerald-400/30 rounded-xl p-4 text-center">
@@ -261,15 +256,12 @@ export default function About() {
 
               {/* Right Column - Image Placeholder & Activities */}
               <div className="space-y-6">
-                <div className="bg-gradient-to-br from-lime-800/50 to-green-800/50 border-2 border-lime-400/30 rounded-2xl h-64 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-lime-400 mb-2">
-                      <svg className="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
-                      </svg>
-                    </div>
-                    <p className="text-gray-300 text-sm">Biosphere Club Activities</p>
-                  </div>
+                <div className="bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-64 overflow-hidden">
+                  <img 
+                    src="/members.jpg" 
+                    alt="Members" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
 
                 {/* Activities Grid */}
