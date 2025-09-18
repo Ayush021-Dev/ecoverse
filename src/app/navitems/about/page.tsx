@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Navbar from '../../components/Navbar/Navbar' // Adjust path as needed
 
 export default function About() {
   return (
@@ -26,36 +27,11 @@ export default function About() {
         <div className="absolute top-2/3 left-20 w-32 h-32 bg-gradient-to-r from-emerald-400/15 to-lime-400/10 rounded-2xl rotate-12 animate-drift-left blur-sm"></div>
       </div>
 
-      {/* Header */}
-      <header className="relative z-10 flex justify-between items-center p-6 md:p-8 backdrop-blur-sm">
-        <div className="flex items-center space-x-4">
-          <Link href="/" className="flex items-center space-x-4 hover:scale-105 transition-transform duration-300">
-            <div className="w-12 h-12 bg-gradient-to-r from-emerald-400 to-green-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25">
-              <span className="text-white font-bold text-sm">17</span>
-            </div>
-            <div>
-              <span className="text-emerald-400 font-bold text-xl tracking-wide">EcoVerse</span>
-              <div className="text-gray-400 text-xs">VIT Chennai</div>
-            </div>
-          </Link>
-        </div>
-        
-        <nav className="hidden md:flex space-x-8 text-gray-300">
-          <Link href="/" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Home</Link>
-          <Link href="/about" className="text-emerald-400 border-b-2 border-emerald-400">About</Link>
-          <Link href="/tracks" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Tracks</Link>
-          <Link href="#schedule" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Schedule</Link>
-          <Link href="#sponsors" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Sponsors</Link>
-          <Link href="#register" className="hover:text-emerald-400 transition-all duration-300 border-b-2 border-transparent hover:border-emerald-400">Register</Link>
-        </nav>
-        
-        <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full hover:from-emerald-600 hover:to-green-700 transition-all transform hover:scale-105 font-semibold shadow-lg shadow-emerald-500/25">
-          Register Now
-        </button>
-      </header>
+      {/* Import the Navbar Component */}
+      <Navbar />
 
       {/* Main Content */}
-      <main className="relative z-10 px-6 py-12">
+      <main className="relative z-10 px-6 py-12 pt-24">
         {/* Page Header */}
         <div className="text-center mb-16">
           <div className="mb-8">
@@ -324,7 +300,7 @@ export default function About() {
                   </p>
                   <button className="px-6 py-2 bg-gradient-to-r from-lime-400 to-emerald-500 text-black font-bold rounded-full hover:from-lime-500 hover:to-emerald-600 transition-all transform hover:scale-105 text-sm shadow-lg">
                     Learn More
-                  </button>
+                  </button> {/* Biosphere website link*/}
                 </div>
               </div>
             </div>
@@ -351,7 +327,7 @@ export default function About() {
               Be part of the sustainable innovation revolution at VIT Chennai
             </p>
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center">
-              <Link href="/tracks">
+              <Link href="/navitems/tracks" passHref>
                 <button className="group relative px-10 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full overflow-hidden shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
                   <span className="relative z-10">Explore Tracks</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
