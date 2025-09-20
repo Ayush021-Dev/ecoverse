@@ -12,21 +12,57 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/navitems/about' },
-  { label: 'Tracks', href: '/navitems/tracks' },
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about-ecoverse' },  
+  { label: 'Tracks', href: '#tracks' },
   { label: 'Schedule', href: '#schedule' },
-  { label: 'Sponsors', href: '#sponsors' },
-  { label: 'Register', href: '#register' },
+  { label: 'Sponsors', href: '#sponsorship' },
+  { label: 'Register', href: '#contact' },  // or wherever your registration is
 ]
 
 const Navbar: NextPage = () => {
   const pathname = usePathname()
-  const [hash, setHash] = useState('')
+  const [activeSection, setActiveSection] = useState(pathname === '/' ? 'home' : '')
 
   useEffect(() => {
-    setHash(window.location.hash)
-  }, [])
+    if (pathname !== '/') return
+
+    const handleScroll = () => {
+    const scrollY = window.scrollY
+    
+    // If near top, set home as active
+    if (scrollY < 200) {
+      setActiveSection('home')
+      return
+    }
+
+    const sections = ['about-ecoverse', 'tracks', 'schedule', 'sponsorship', 'contact']
+    
+    sections.forEach((section) => {
+      const element = document.getElementById(section)
+      if (element) {
+        const rect = element.getBoundingClientRect()
+        const elementTop = window.scrollY + rect.top
+        
+        if (scrollY >= elementTop - 200 && scrollY < elementTop + element.offsetHeight - 200) {
+          setActiveSection(section)
+        }
+      }
+    })
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  handleScroll() // Check initial position
+  
+  return () => window.removeEventListener('scroll', handleScroll)
+}, [pathname])
+  const handleNavClick = (href: string) => {
+    // If we're not on homepage, navigate to homepage first
+    if (pathname !== '/') {
+      window.location.href = href // This will go to homepage and scroll to section
+    }
+    // If we're already on homepage, just scroll
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 md:p-6 backdrop-blur-sm max-w-7xl mx-auto">
@@ -50,12 +86,14 @@ const Navbar: NextPage = () => {
       {/* Navigation Links */}
       <nav className="hidden md:flex space-x-8 text-gray-300">
         {navItems.map(({ label, href }) => {
-          const isActive = href.startsWith('#') ? pathname + hash === href : pathname === href
+          const sectionId = href.replace('#', '')
+          const isActive = pathname === '/' && activeSection === sectionId
 
           return (
             <Link
               key={href}
               href={href}
+              onClick={() => handleNavClick(href)}
               className={`transition-all duration-300 border-b-2 border-transparent hover:text-emerald-400 hover:border-emerald-400 ${
                 isActive ? 'text-emerald-400 border-emerald-400 font-semibold' : ''
               }`}
@@ -67,9 +105,11 @@ const Navbar: NextPage = () => {
       </nav>
 
       {/* CTA Button */}
-      <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full hover:from-emerald-600 hover:to-green-700 transition-all transform hover:scale-105 font-semibold shadow-lg shadow-emerald-500/25">
-        Register Now
-      </button>
+      <Link href="#contact">
+        <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full hover:from-emerald-600 hover:to-green-700 transition-all transform hover:scale-105 font-semibold shadow-lg shadow-emerald-500/25">
+          Register Now
+        </button>
+      </Link>
     </header>
   )
 }
