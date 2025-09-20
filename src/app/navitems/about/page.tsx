@@ -3,19 +3,10 @@ import Navbar from '../../components/Navbar/Navbar'
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-950 to-black relative overflow-hidden">
+    <div className="relative z-10 min-h-screen py-20">
       {/* Enhanced Background Pattern */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <svg width="100%" height="100%" className="animate-pulse">
-            <defs>
-              <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#10b981" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
+        
 
         {/* Floating Background Elements */}
         <div className="absolute top-20 right-20 w-32 h-32 border-2 border-emerald-400/30 rotate-45 animate-spin-slow"></div>

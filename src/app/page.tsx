@@ -1,6 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from './components/Navbar/Navbar'
+import AboutEcoverse from './navitems/aboutecoverse/page'
+import Sponsorship from './navitems/sponsorship/page'
+import Coordinators from './navitems/coordinators/page'
+import Contact from './navitems/contact/page'
+import Vitmap from './navitems/vitmap/page'
+import Tracks from './navitems/tracks/page'
+import About from './navitems/about/page'
 
 export default function Home() {
   return (
@@ -22,6 +29,20 @@ export default function Home() {
         <div className="absolute top-20 right-20 w-32 h-32 border-2 border-emerald-400/30 rotate-45 animate-spin-slow"></div>
         <div className="absolute bottom-32 left-16 w-24 h-24 bg-gradient-to-r from-green-400/20 to-emerald-600/20 rounded-full animate-pulse"></div>
         <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-lime-500/20 clip-triangle animate-bounce"></div>
+
+        {/* Additional floating elements for longer page */}
+        <div className="absolute" style={{top: '150vh', left: '10%'}}>
+          <div className="w-20 h-20 border border-emerald-400/20 rounded-full animate-pulse"></div>
+        </div>
+        <div className="absolute" style={{top: '250vh', right: '15%'}}>
+          <div className="w-16 h-16 bg-green-400/10 rotate-12 animate-drift-left"></div>
+        </div>
+        <div className="absolute" style={{top: '350vh', left: '20%'}}>
+          <div className="w-12 h-12 border-2 border-lime-400/20 rotate-45 animate-spin-slow"></div>
+        </div>
+        <div className="absolute" style={{top: '450vh', right: '25%'}}>
+          <div className="w-14 h-14 bg-emerald-400/10 rounded-full animate-pulse"></div>
+        </div>
       </div>
 
       <Navbar />
@@ -142,10 +163,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="text-center text-gray-500 text-sm">
-          <p>Organized by <span className="text-emerald-400 font-semibold">VIT Chennai</span> • Office of Student Welfare</p>
-        </div>
+        
       </main>
 
       {/* Animated Particles */}
@@ -193,6 +211,22 @@ export default function Home() {
           </svg>
         </div>
       </div>
+      
+      <AboutEcoverse />
+      <Tracks/>
+      <Sponsorship/>
+      <About/>
+      <Coordinators/>
+      <Contact/>
+      <Vitmap/>
+
+      {/* Footer */}
+        <div className="text-center text-gray-500 text-sm">
+          <p>Organized by <span className="text-emerald-400 font-semibold">VIT Chennai</span> • Office of Student Welfare</p>
+        </div>
+
     </div>
+    
+    
   )
 }
