@@ -140,31 +140,6 @@ html {
   color: white;
 }
 
-/* Focus styles */
-button:focus,
-a:focus {
-  outline: 2px solid #10b981;
-  outline-offset: 2px;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* Hide scrollbar but keep functionality */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #10b981, #22c55e);
-  border-radius: 4px;
-}
-
 /* Enhanced seamless background */
 @keyframes grid-drift {
   0%, 100% { transform: translateY(0px); }
@@ -178,6 +153,7 @@ html {
 /* Smooth section transitions */
 section {
   transition: all 0.5s ease-in-out;
+  scroll-margin-top: 100px; /* Adjust for fixed header height */
 }
 
 /* Better backdrop blur for cards */
@@ -186,11 +162,33 @@ section {
   -webkit-backdrop-filter: blur(16px);
 }
 
-section {
-  scroll-margin-top: 100px; /* Adjust for fixed header height */
+/* NAVBAR FOCUS STYLES - Remove all glow effects */
+header nav a,
+header nav a:hover,
+header nav a:focus,
+header nav a:active,
+header nav a:visited,
+header nav a:focus-visible {
+  text-shadow: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  outline: none !important;
+  border-glow: none !important;
 }
 
-nav a:focus {
-  outline: none;
-  box-shadow: none;
+/* Remove focus styles from all navigation elements */
+nav a:focus,
+nav a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* General focus styles for other elements (keeping accessibility) */
+button:focus:not(nav button),
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
 }

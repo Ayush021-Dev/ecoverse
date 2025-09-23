@@ -1,46 +1,46 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from './components/Navbar/Navbar'
-import AboutEcoverse from './navitems/aboutecoverse/page'
-import Sponsorship from './navitems/sponsorship/page'
-import Coordinators from './navitems/coordinators/page'
-import Contact from './navitems/contact/page'
-import Vitmap from './navitems/vitmap/page'
-import Tracks from './navitems/tracks/page'
-import About from './navitems/about/page'
+import AboutEcoverse from './components/aboutecoverse'
+import Sponsorship from './components/sponsorship'
+import Coordinators from './components/coordinators'
+import Contact from './components/contact'
+import Vitmap from './components/vitmap'
+import Tracks from './components/tracks'
+import About from './components/about'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-950 to-black relative overflow-hidden">
+    <div className="bg-gradient-to-br from-gray-900 via-emerald-950 to-black relative overflow-hidden">
       {/* Geometric Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           <svg width="100%" height="100%" className="animate-pulse">
             <defs>
               <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#10b981" strokeWidth="1"/>
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#10b981" strokeWidth="1" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
-        
+
         {/* Floating Geometric Shapes */}
         <div className="absolute top-20 right-20 w-32 h-32 border-2 border-emerald-400/30 rotate-45 animate-spin-slow"></div>
         <div className="absolute bottom-32 left-16 w-24 h-24 bg-gradient-to-r from-green-400/20 to-emerald-600/20 rounded-full animate-pulse"></div>
         <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-lime-500/20 clip-triangle animate-bounce"></div>
 
         {/* Additional floating elements for longer page */}
-        <div className="absolute" style={{top: '150vh', left: '10%'}}>
+        <div className="absolute" style={{ top: '150vh', left: '10%' }}>
           <div className="w-20 h-20 border border-emerald-400/20 rounded-full animate-pulse"></div>
         </div>
-        <div className="absolute" style={{top: '250vh', right: '15%'}}>
+        <div className="absolute" style={{ top: '250vh', right: '15%' }}>
           <div className="w-16 h-16 bg-green-400/10 rotate-12 animate-drift-left"></div>
         </div>
-        <div className="absolute" style={{top: '350vh', left: '20%'}}>
+        <div className="absolute" style={{ top: '350vh', left: '20%' }}>
           <div className="w-12 h-12 border-2 border-lime-400/20 rotate-45 animate-spin-slow"></div>
         </div>
-        <div className="absolute" style={{top: '450vh', right: '25%'}}>
+        <div className="absolute" style={{ top: '450vh', right: '25%' }}>
           <div className="w-14 h-14 bg-emerald-400/10 rounded-full animate-pulse"></div>
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function Home() {
                 INNOVATION
               </h2>
             </div>
-            
+
             {/* Corner decoration */}
             <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-emerald-400/50"></div>
             <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-emerald-400/50"></div>
@@ -139,7 +139,7 @@ export default function Home() {
             </button>
           </Link>
 
-          <Link href="/navitems/tracks" passHref>
+          <Link href="#tracks" passHref>
             <button className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105">
               <span className="relative z-10">Explore Tracks</span>
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
@@ -163,7 +163,7 @@ export default function Home() {
           </div>
         </div>
 
-        
+
       </main>
 
       {/* Animated Particles */}
@@ -189,44 +189,46 @@ export default function Home() {
           <svg width="100%" height="100%" className="animate-pulse">
             <defs>
               <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#10b981" strokeWidth="1"/>
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#10b981" strokeWidth="1" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
-        
+
         {/* Large Glowing Orb - Top Left */}
         <div className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-br from-emerald-500/10 via-green-400/5 to-transparent rounded-full blur-3xl animate-glow-pulse"></div>
 
         {/* Small Accent Dots - Left Side */}
         <div className="absolute top-32 left-32 w-4 h-4 bg-emerald-400/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-48 left-8 w-2 h-2 bg-green-400/40 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-64 left-24 w-3 h-3 bg-lime-400/35 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
-        
+        <div className="absolute top-48 left-8 w-2 h-2 bg-green-400/40 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-64 left-24 w-3 h-3 bg-lime-400/35 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+
         {/* Hexagon Shape - Left Middle */}
-        <div className="absolute top-1/2 left-4 w-12 h-12 animate-drift-left" style={{animationDelay: '3s'}}>
+        <div className="absolute top-1/2 left-4 w-12 h-12 animate-drift-left" style={{ animationDelay: '3s' }}>
           <svg viewBox="0 0 24 24" className="w-full h-full opacity-20">
-            <path d="M17.5 3.5L22 12L17.5 20.5H6.5L2 12L6.5 3.5H17.5Z" stroke="#10b981" strokeWidth="1" fill="rgba(16, 185, 129, 0.05)"/>
+            <path d="M17.5 3.5L22 12L17.5 20.5H6.5L2 12L6.5 3.5H17.5Z" stroke="#10b981" strokeWidth="1" fill="rgba(16, 185, 129, 0.05)" />
           </svg>
         </div>
       </div>
-      
-      <AboutEcoverse />
-      <Tracks/>
-      <Sponsorship/>
-      <About/>
-      <Coordinators/>
-      <Contact/>
-      <Vitmap/>
+
+      <div className="space-y--12"> 
+        <AboutEcoverse />
+        <Tracks />
+        <Sponsorship />
+        <About />
+        <Coordinators />
+        <Contact />
+        <Vitmap />
+      </div>
 
       {/* Footer */}
-        <div className="text-center text-gray-500 text-sm">
-          <p>Organized by <span className="text-emerald-400 font-semibold">VIT Chennai</span> • Office of Student Welfare</p>
-        </div>
+      <div className="text-center text-gray-500 text-sm">
+        <p>Organized by <span className="text-emerald-400 font-semibold">VIT Chennai</span> • Office of Student Welfare</p>
+      </div>
 
     </div>
-    
-    
+
+
   )
 }

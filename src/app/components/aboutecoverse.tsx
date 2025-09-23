@@ -1,6 +1,6 @@
 export default function AboutEcoverse() {
   return (
-    <section id="about-ecoverse" className="relative z-10 min-h-screen py-20">
+    <section id="about-ecoverse" className="relative z-10 py-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-black mb-4 tracking-tight">
@@ -9,7 +9,7 @@ export default function AboutEcoverse() {
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A 48-hour sustainability hackathon bringing together innovators to solve real-world environmental challenges.
+            A 24-hour sustainability hackathon bringing together innovators to solve real-world environmental challenges.
           </p>
         </div>
         
@@ -18,7 +18,7 @@ export default function AboutEcoverse() {
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">What is EcoVerse?</h3>
               <p className="text-gray-200 mb-4">
-                EcoVerse 2025 is VIT Chennai's flagship sustainability hackathon that challenges participants to develop innovative solutions for environmental problems.
+                EcoVerse 2025 is VIT Chennai&apos;s flagship sustainability hackathon that challenges participants to develop innovative solutions for environmental problems.
               </p>
               <p className="text-gray-200">
                 Join 500+ participants in creating technology-driven solutions that align with UN Sustainable Development Goals.

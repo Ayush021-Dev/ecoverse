@@ -1,6 +1,6 @@
 export default function VitMap() {
   return (
-    <section id="vit-map" className="relative z-10 min-h-screen py-20">
+    <section id="vit-map" className="relative z-10 min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-black mb-4 tracking-tight">

@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import Navbar from '../../components/Navbar/Navbar'
+import Image from 'next/image'
 
 export default function About() {
   return (
-    <div className="relative z-10 min-h-screen py-20">
+    <section id="about" className="relative z-10">
+
       {/* Enhanced Background Pattern */}
       <div className="absolute inset-0">
         
@@ -17,9 +17,6 @@ export default function About() {
         <div className="absolute top-40 left-10 w-60 h-60 bg-gradient-to-br from-emerald-500/10 via-green-400/5 to-transparent rounded-full blur-3xl animate-glow-pulse"></div>
         <div className="absolute top-2/3 left-20 w-32 h-32 bg-gradient-to-r from-emerald-400/15 to-lime-400/10 rounded-2xl rotate-12 animate-drift-left blur-sm"></div>
       </div>
-
-      {/* Import the Navbar Component */}
-      <Navbar />
 
       {/* Main Content */}
       <main className="relative z-10 px-6 py-12 pt-24">
@@ -71,7 +68,7 @@ export default function About() {
             <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
               <div className="space-y-6">
                 <div className="bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-64 overflow-hidden">
-                  <img 
+                  <Image 
                     src="/vit.jpg" 
                     alt="VIT Chennai Campus" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
@@ -248,7 +245,7 @@ export default function About() {
               {/* Right Column - Image Placeholder & Activities */}
               <div className="space-y-6">
                 <div className="bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-64 overflow-hidden">
-                  <img 
+                  <Image 
                     src="/members.jpg" 
                     alt="Members" 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
@@ -301,29 +298,27 @@ export default function About() {
         </section>
 
         {/* Call to Action Section */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-emerald-950/80 to-green-950/80 backdrop-blur-xl border-2 border-emerald-400/50 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl shadow-emerald-500/10">
-            <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
-              Ready to Join EcoVerse 2025?
-            </h3>
-            <p className="text-xl text-gray-300 mb-8">
-              Be part of the sustainable innovation revolution at VIT Chennai
-            </p>
-            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center">
-              <Link href="/navitems/tracks" passHref>
+          <div className="text-center mt-20 mb-12">
+            <div className="bg-gradient-to-r from-emerald-950/80 to-green-950/80 backdrop-blur-xl border-2 border-emerald-400/50 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl shadow-emerald-500/10">
+              <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
+                Ready to Make an Impact?
+              </h3>
+              <p className="text-xl text-gray-300 mb-8">
+                Join 500+ innovators in building solutions for a sustainable future
+              </p>
+              <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center">
                 <button className="group relative px-10 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full overflow-hidden shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
-                  <span className="relative z-10">Explore Tracks</span>
+                  <span className="relative z-10">Register Your Team</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
-              </Link>
-              
-              <button className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105">
-                <span className="relative z-10">Register Now</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </button>
+                
+                <button className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105">
+                  <span className="relative z-10">Download Brochure</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
       </main>
 
       {/* Animated Particles */}
@@ -342,6 +337,6 @@ export default function About() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }
