@@ -8,6 +8,7 @@ import Contact from './components/contact'
 import Vitmap from './components/vitmap'
 import Tracks from './components/tracks'
 import About from './components/about'
+import Timeline from './components/timeline'
 
 export default function Home() {
   return (
@@ -215,11 +216,12 @@ export default function Home() {
       <div className="space-y--12"> 
         <AboutEcoverse />
         <Tracks />
+        <Timeline />
         <Sponsorship />
         <About />
         <Coordinators />
-        <Contact />
         <Vitmap />
+        <Contact />
       </div>
 
       {/* Footer */}

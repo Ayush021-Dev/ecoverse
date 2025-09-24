@@ -13,6 +13,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Home', href: '#home' },
   { label: 'Tracks', href: '#tracks' },
+  { label: 'Timeline', href: '#timeline' },
   { label: 'Sponsors', href: '#sponsorship' },
   { label: 'About', href: '#about' },  
   { label: 'More Info', href: '#coordinators' },
@@ -31,7 +32,7 @@ const Navbar: NextPage = () => {
         return
       }
 
-      const sections = ['about', 'tracks', 'sponsorship', 'coordinators']
+      const sections = ['about', 'timeline', 'tracks', 'sponsorship', 'coordinators']
       
       sections.forEach((section) => {
         const element = document.getElementById(section)

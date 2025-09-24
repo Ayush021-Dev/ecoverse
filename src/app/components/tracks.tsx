@@ -3,24 +3,24 @@ export default function Tracks() {
   const tracks = [
     {
       id: "01",
-      title: "Sustainable Environment & Resource Management",
-      sdgs: ["SDG 7", "SDG 13", "SDG 6", "SDG 12", "SDG 14", "SDG 15"],
-      description: "Focuses on renewable energy, climate action, water conservation, sustainable consumption, marine and terrestrial ecosystems.",
-      details: "Problem statements may include challenges in energy efficiency, waste reduction, water conservation, biodiversity protection, or climate resilience."
+      title: "Data Science & Machine Learning",
+      sdgs: ["SDG 2", "SDG 6", "SDG 7", "SDG 13", "SDG 14", "SDG 15"],
+      description: "This track explores how advanced analytics and intelligent systems can be applied to sustainability challenges.",
+      details: "Participants may work on AI-driven models for climate risk prediction, renewable energy optimization, carbon footprint reduction, biodiversity and ecosystem monitoring, or predictive insights for sustainable agriculture and water conservation."
     },
     {
       id: "02", 
-      title: "Society, Partnerships & Governance",
-      sdgs: ["SDG 1", "SDG 2", "SDG 4", "SDG 5", "SDG 10", "SDG 8", "SDG 16", "SDG 17"],
-      description: "Focuses on poverty alleviation, food security, education, gender equality, reduced inequalities, decent work, peace, justice, and global partnerships.",
-      details: "Problem statements may involve inclusive educational platforms, women empowerment initiatives, community welfare models, digital governance, or fostering equitable economic opportunities."
+      title: "Blockchain & Cybersecurity",
+      sdgs: ["SDG 8", "SDG 9", "SDG 10", "SDG 16", "SDG 17"],
+      description: "This track focuses on building trust, transparency, and equity in sustainability initiatives through blockchain and secure digital systems.",
+      details: "Problem statements may include developing blockchain platforms for supply chain transparency, secure identity solutions for empowering communities, decentralized models for fair trade and sustainable finance, or cybersecurity frameworks that protect critical sustainability infrastructure."
     },
     {
       id: "03",
-      title: "Quality of Life & Human Empowerment", 
-      sdgs: ["SDG 9", "SDG 11", "SDG 3"],
-      description: "Focuses on industry and innovation, sustainable cities, healthcare, and overall well-being.",
-      details: "Problem statements under this stream may focus on medical technology, smart city solutions, affordable healthcare, urban mobility, or digital tools that enhance everyday living."
+      title: "IoT & Robotics", 
+      sdgs: ["SDG 2", "SDG 3", "SDG 6", "SDG 7", "SDG 11", "SDG 15"],
+      description: "This track highlights the role of connected devices and intelligent robotics in creating sustainable cities, resilient infrastructure, and accessible healthcare.",
+      details: "Participants may explore IoT-enabled smart grids for energy efficiency, robotics for precision agriculture, smart urban solutions for waste management and mobility, assistive technologies for affordable healthcare, or sensor-based systems for monitoring air, water, and soil quality."
     }
   ]
 
@@ -118,16 +118,7 @@ export default function Tracks() {
                       {track.details}
                     </p>
 
-                    {/* Action Buttons - Matching Your Image Style */}
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <button className="group/btn relative px-8 py-3 bg-gradient-to-r from-lime-400 to-emerald-500 text-black font-bold rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                        <span className="relative z-10">Explore Problems</span>
-                      </button>
-                      
-                      <button className="group/btn relative px-8 py-3 border-2 border-emerald-400 text-emerald-300 font-bold rounded-full overflow-hidden hover:bg-emerald-400/10 transition-all duration-300 transform hover:scale-105">
-                        <span className="relative z-10">View Examples</span>
-                      </button>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
