@@ -52,7 +52,6 @@ export default function VitMap() {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const requestLocationAccess = () => {
     setLocationPermission('checking');
-    // Force a new location request to trigger permission prompt again
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
