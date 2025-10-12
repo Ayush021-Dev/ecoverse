@@ -1,4 +1,24 @@
+import Image from 'next/image'
+
 export default function Sponsorship() {
+  const sponsors = [
+    {
+      tier: 'Cyber Security Sponsor',
+      logo: '/K7_Sec.png', 
+      alt: 'Title Sponsor Logo'
+    },
+    // {
+    //   tier: 'Gold Sponsor',
+    //   logo: '/sponsors/gold-sponsor.png', 
+    //   alt: 'Gold Sponsor Logo'
+    // },
+    // {
+    //   tier: 'Silver Sponsor',
+    //   logo: '/sponsors/silver-sponsor.png', 
+    //   alt: 'Silver Sponsor Logo'
+    // }
+  ]
+
   return (
     <section id="sponsorship" className="relative z-10">
       <div className="max-w-7xl mx-auto px-6"><br/> <br/> <br/> 
@@ -13,14 +33,19 @@ export default function Sponsorship() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {['Title Sponsor', 'Gold Sponsor', 'Silver Sponsor'].map((tier) => (
-            <div key={tier} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-8 text-center">
-              <h3 className="text-xl font-bold text-emerald-400 mb-4">{tier}</h3>
-              <div className="bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-32 flex items-center justify-center">
-                <p className="text-gray-400">Logo Placeholder</p>
+        <div className="flex flex-wrap justify-center gap-8 mb-12">
+          {sponsors.map((sponsor) => (
+            <div key={sponsor.tier} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-8 text-center w-full md:w-80">
+              <h3 className="text-xl font-bold text-emerald-400 mb-4">{sponsor.tier}</h3>
+              <div className="bg-white/95 border-2 border-emerald-400/30 rounded-2xl h-32 flex items-center justify-center p-6">
+                <Image 
+                  src={sponsor.logo}
+                  alt={sponsor.alt}
+                  width={250}
+                  height={80}
+                  className="object-contain w-full h-full"
+                />
               </div>
-              <p className="text-gray-300 mt-4 text-sm">Coming Soon</p>
             </div>
           ))}
         </div>
