@@ -2,10 +2,9 @@ export default function Timeline() {
   const timelineEvents = [
     {
       id: 1,
-      date: "1st OCT",
+      date: "20th OCT",
       title: "Registration starts",
       type: "start",
-      icon: "📝",
       side: "left"
     },
     {
@@ -14,7 +13,6 @@ export default function Timeline() {
       title: "Registration ends",
       subtitle: "& Online skills workshop",
       type: "deadline",
-      icon: "⏰",
       side: "right"
     },
     {
@@ -28,7 +26,6 @@ export default function Timeline() {
         "REVIEW 3 - NOV 6th morning"
       ],
       type: "event",
-      icon: "🚀",
       side: "left"
     },
     {
@@ -37,7 +34,6 @@ export default function Timeline() {
       title: "Final Evaluation",
       subtitle: "& Winners Announcement",
       type: "final",
-      icon: "🏆",
       side: "right",
     }
   ]
@@ -127,7 +123,6 @@ export default function Timeline() {
                         <div className={`bg-gradient-to-r ${getEventStyle(event.type)} text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg`}>
                           {event.date}
                         </div>
-                        <span className="text-2xl">{event.icon}</span>
                         </div>
                       
                       <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
@@ -177,7 +172,6 @@ export default function Timeline() {
                     <div className={`bg-gradient-to-r ${getEventStyle(event.type)} text-white px-3 py-1 rounded-full font-bold text-xs`}>
                       {event.date}
                     </div>
-                    <span className="text-xl">{event.icon}</span>
                     </div>
                   
                   <h3 className="text-lg font-bold text-white mb-2">{event.title}</h3>

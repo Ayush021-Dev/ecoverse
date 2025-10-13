@@ -94,7 +94,7 @@ export default function Home() {
         </div>
 
         {/* Modern Date Display */}
-        <div className="mb-12">
+        <div className="mb-8">
           <div className="bg-gradient-to-r from-emerald-900/50 to-green-900/50 backdrop-blur-lg border border-emerald-400/30 rounded-3xl px-12 py-6 shadow-2xl">
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-emerald-300 mb-2">
@@ -108,7 +108,7 @@ export default function Home() {
         </div>
 
         {/* Theme Box - Ultra Modern */}
-        <div className="mb-16 group">
+        <div className="mb-8 group">
           <div className="relative bg-gradient-to-r from-emerald-950/80 to-green-950/80 backdrop-blur-xl border-2 border-emerald-400/50 rounded-3xl p-8 md:p-12 max-w-4xl shadow-2xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-500">
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/5 to-green-400/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="relative text-center">
@@ -131,17 +131,30 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Registration Fees */}
+        <div className="mb-8">
+          <div className="bg-gradient-to-r from-emerald-900/50 to-green-900/50 backdrop-blur-lg border border-emerald-400/30 rounded-2xl px-8 py-6 max-w-2xl mx-auto shadow-xl">
+            <div className="text-center">
+              <div className="text-gray-300 text-sm mb-2 tracking-wide">REGISTRATION FEE</div>
+              <div className="text-4xl md:text-5xl font-black text-emerald-400 mb-2">
+                ₹200
+              </div>
+              <div className="text-gray-400 text-xs">Per Team (3-4 members)</div>
+            </div>
+          </div>
+        </div>
+
         {/* Modern CTA Buttons */}
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mb-16">
-          <Link href="#register" passHref>
-            <button className="group relative px-10 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full overflow-hidden shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mb-8 w-full max-w-md md:max-w-none mx-auto md:justify-center">
+          <Link href="#register" passHref className="w-full md:w-auto">
+            <button className="w-full group relative px-10 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full overflow-hidden shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
               <span className="relative z-10">Register Now</span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </Link>
 
-          <Link href="#tracks" passHref>
-            <button className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105">
+          <Link href="#tracks" passHref className="w-full md:w-auto">
+            <button className="w-full group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105">
               <span className="relative z-10">Explore Tracks</span>
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
@@ -149,18 +162,18 @@ export default function Home() {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-3 gap-8 md:gap-16 mb-12">
+        <div className="grid grid-cols-3 gap-4 md:gap-16 mb-6 max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold text-emerald-400">500+</div>
-            <div className="text-gray-400 text-sm">Participants</div>
+            <div className="text-2xl md:text-3xl font-bold text-emerald-400">300+</div>
+            <div className="text-gray-400 text-xs md:text-sm">Participants</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold text-green-400">₹5L+</div>
-            <div className="text-gray-400 text-sm">Prize Pool</div>
+            <div className="text-2xl md:text-3xl font-bold text-green-400">10+</div>
+            <div className="text-gray-400 text-xs md:text-sm">Internships</div>
           </div>
           <div className="text-center">
             <div className="text-2xl md:text-3xl font-bold text-lime-400">24</div>
-            <div className="text-gray-400 text-sm">Hours</div>
+            <div className="text-gray-400 text-xs md:text-sm">Hours</div>
           </div>
         </div>
 
@@ -226,7 +239,7 @@ export default function Home() {
 
       {/* Footer */}
       <div className="text-center text-gray-500 text-sm">
-        <p>Organized by <span className="text-emerald-400 font-semibold">VIT Chennai</span> • Office of Student Welfare</p>
+        <p>Organized by <span className="text-emerald-400 font-semibold">Biosphere Club</span> • VIT Chennai</p>
       </div>
 
     </div>

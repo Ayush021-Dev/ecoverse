@@ -125,7 +125,7 @@ export default function VitMap() {
                 <p className="text-emerald-300 font-bold text-3xl md:text-4xl">VIT Chennai</p>
                 <p className="flex items-start text-lg">
                   <span className="text-emerald-400 mr-3 mt-0">📍</span>
-                  Vandalur - Kelambakkam Road
+                  Vandalur - Kelambakkam Road, Rajan Nagar
                 </p>
                 <p className="flex items-start text-lg">
                   <span className="text-emerald-400 mr-3 mt-0">🏙️</span>
