@@ -1,11 +1,22 @@
 import Image from 'next/image'
 
 export default function Coordinators() {
-  const coordinators = [
-    { name: "Dr. Umayal C", role: "Faculty Coordinator", dept: "School of Electrical Engineering", image: "/faculty.jpg" },
-    { name: "Raahul M", role: "Secretary", dept: "Biosphere Club", image: "/Raahul.jpg" },
-    { name: "Praveshika M", role: "Member", dept: "Biosphere Club", image: "/Praveshika.jpg" },
-    { name: "Lakshanya M", role: "Member", dept: "Biosphere Club", image: "/Lakshanya.jpg" }
+  const faculty = {
+    name: "Dr. Umayal C",
+    role: "Faculty Coordinator",
+    dept: "School of Electrical Engineering",
+    image: "/faculty.jpg"
+  }
+
+  const leadership = [
+    { name: "Meera", role: "President", image: "/meera.jpg" },
+    { name: "Melvin", role: "Vice President", image: "/melvin.jpg" }
+  ]
+
+  const studentCoords = [
+    { name: "Raahul M", role: "Student Coordinator", image: "/Raahul.jpg" },
+    { name: "Praveshika M", role: "Student Coordinator", image: "/Praveshika.jpg" },
+    { name: "Lakshanya M", role: "Student Coordinator", image: "/Lakshanya.jpg" }
   ]
 
   return (
@@ -22,10 +33,46 @@ export default function Coordinators() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {coordinators.map((coord, index) => (
-            <div key={index} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center">
-              <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-32 w-32 mx-auto mb-4 overflow-hidden">
+        {/* Faculty Coordinator */}
+        <div className="flex justify-center mb-12">
+          <div className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
+            <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
+              <Image 
+                src={faculty.image} 
+                alt={faculty.name}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <h3 className="text-lg font-bold text-white mb-2">{faculty.name}</h3>
+            <p className="text-emerald-400 text-sm mb-1">{faculty.role}</p>
+            <p className="text-gray-400 text-xs">{faculty.dept}</p>
+          </div>
+        </div>
+
+        {/* President & Vice President */}
+        <div className="flex justify-center gap-8 mb-12 flex-wrap">
+          {leadership.map((leader, index) => (
+            <div key={index} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
+              <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
+                <Image 
+                  src={leader.image} 
+                  alt={leader.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">{leader.name}</h3>
+              <p className="text-emerald-400 text-sm">{leader.role}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Student Coordinators */}
+        <div className="flex justify-center gap-8 flex-wrap max-w-5xl mx-auto">
+          {studentCoords.map((coord, index) => (
+            <div key={index} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
+              <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
                 <Image 
                   src={coord.image} 
                   alt={coord.name}
@@ -34,8 +81,7 @@ export default function Coordinators() {
                 />
               </div>
               <h3 className="text-lg font-bold text-white mb-2">{coord.name}</h3>
-              <p className="text-emerald-400 text-sm mb-1">{coord.role}</p>
-              <p className="text-gray-400 text-xs">{coord.dept}</p>
+              <p className="text-emerald-400 text-sm">{coord.role}</p>
             </div>
           ))}
         </div>

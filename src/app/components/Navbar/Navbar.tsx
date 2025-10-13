@@ -57,9 +57,10 @@ const Navbar: NextPage = () => {
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 md:p-6 backdrop-blur-sm max-w-7xl mx-auto">
       {/* Logo Section */}
       <div className="flex items-center space-x-4">
-        <div className="w-12 h-12 bg-gradient-to-r from-emerald-400 to-green-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25 relative overflow-hidden">
+       <div className="w-12 h-12 bg-gradient-to-r from-emerald-950 to-gray-900 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25 relative overflow-hidden">
+
           <Image
-            src="/vitlogo.png"
+            src="/Ecoverse3.png"
             alt="VIT Chennai Logo"
             fill
             className="object-cover rounded-xl"
@@ -68,7 +69,7 @@ const Navbar: NextPage = () => {
         </div>
         <div>
           <span className="text-emerald-400 font-bold text-xl tracking-wide">EcoVerse</span>
-          <div className="text-gray-400 text-xs">VIT Chennai</div>
+          <div className="text-gray-400 text-xs">Biosphere Club</div>
         </div>
       </div>
 

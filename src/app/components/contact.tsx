@@ -1,8 +1,9 @@
 export default function Contact() {
   const contacts = [
-    { name: "Raahul M", phone: "+91 81223 09965" },
-    { name: "Melvin", phone: "+91 90800 59840" },
-    { name: "Santhosh", phone: "+91 93631 52399" }
+    { name: "Raahul M", phone: "+91 8667302096" },
+    { name: "Melvin", phone: "+91 9080059840" },
+    { name: "Lakshanya M", phone: "+91 9043677271" },
+    { name: "Praveshika M", phone: "+91 7358115724" }
   ]
 
   return (
