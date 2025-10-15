@@ -43,24 +43,22 @@ export default function Timeline() {
       title: "REVIEW 1:",
       items: [
         "PPT submission (Idea)",
-        "Checking originality, feasibility",
-        "feedback"
+        "Checking originality, feasibility"
       ]
     },
     {
       title: "REVIEW 2:",
       items: [
-        "Github Repo submission (partial submission)",
-        "Monitoring progress",
-        "Plagiarism checks"
+        "Github Repo Submission (Partial Implementation)",
+        "Monitoring Progress",
+        "Plagiarism Checks"
       ]
     },
     {
       title: "REVIEW 3:",
       items: [
-        "Final judgement",
-        "Full working prototype",
-        "Scope of the prototype"
+        "Final Judgement",
+        "Full Working Prototype"
       ]
     }
   ]
@@ -207,7 +205,7 @@ export default function Timeline() {
                 <ul className="space-y-3">
                   {review.items.map((item, i) => (
                     <li key={i} className="text-gray-300 flex items-start">
-                      <span className="text-emerald-400 mr-2 mt-1">•</span>
+                      <span className="text-emerald-400 mr-2 translate-y[5px]">•</span>
                       <span className="flex-1">{item}</span>
                     </li>
                   ))}
