@@ -1,6 +1,10 @@
+'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 
 export default function Coordinators() {
+  const [showOtherCoords, setShowOtherCoords] = useState(false)
+
   const faculty = {
     name: "Dr. Umayal C",
     role: "Faculty Coordinator",
@@ -17,6 +21,16 @@ export default function Coordinators() {
     { name: "Raahul M", role: "Student Coordinator", image: "/Raahul.jpg" },
     { name: "Praveshika M", role: "Student Coordinator", image: "/Praveshika.jpg" },
     { name: "Lakshanya M", role: "Student Coordinator", image: "/Lakshanya.jpg" }
+  ]
+
+  const otherCoords = [
+    { name: "Ayush", role: "Technical Lead", image: "/ayush.jpg" },
+    { name: "Pragadeesh", role: "Technical Lead", image: "/pragadeesh.jpg" },
+    { name: "Aditya K S", role: "WebDev Coordinator", image: "/aditya.jpg" },
+    { name: "Sukrati Verma", role: "Design Lead", image: "/sukrati.jpg" },
+    { name: "Hema", role: "Coordinator", image: "/hema.jpg" },
+    { name: "Yuvashree", role: "Coordinator", image: "/yuvashree.jpg" },
+    { name: "Ayushi", role: "Coordinator", image: "/ayushi.jpg" }
   ]
 
   return (
@@ -84,6 +98,44 @@ export default function Coordinators() {
               <p className="text-emerald-400 text-sm">{coord.role}</p>
             </div>
           ))}
+        </div>
+
+        {/* Toggle Button */}
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => setShowOtherCoords(!showOtherCoords)}
+            className="group relative px-8 py-4 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-bold rounded-full shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 flex items-center gap-3"
+          >
+            <span>{showOtherCoords ? 'Show Less' : 'Other Coordinators'}</span>
+            <svg 
+              className={`w-5 h-5 transition-transform duration-300 ${showOtherCoords ? 'rotate-180' : ''}`}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Other Coordinators - Collapsible */}
+        <div className={`overflow-hidden transition-all duration-500 ${showOtherCoords ? 'max-h-[2000px] opacity-100 mt-12' : 'max-h-0 opacity-0'}`}>
+          <div className="flex justify-center gap-8 flex-wrap max-w-5xl mx-auto">
+            {otherCoords.map((coord, index) => (
+              <div key={index} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
+                <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
+                  <Image 
+                    src={coord.image} 
+                    alt={coord.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">{coord.name}</h3>
+                <p className="text-emerald-400 text-sm">{coord.role}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

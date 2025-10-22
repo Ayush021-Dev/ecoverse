@@ -139,7 +139,7 @@ export default function Home() {
               <div className="text-4xl md:text-5xl font-black text-emerald-400 mb-2">
                 ₹200
               </div>
-              <div className="text-gray-400 text-xs">Per Team (3-4 members)</div>
+              <div className="text-gray-400 text-xs">Per Team (2-4 members)</div>
             </div>
           </div>
         </div>
