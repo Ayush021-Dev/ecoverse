@@ -9,9 +9,6 @@ export default function Sponsorship() {
       isSquare: false,
       url: 'https://www.linkedin.com/posts/biosphere-club-vit-chennai_ecoverse-k7security-sponsorship-activity-7386667196036329472-LESp'
     },
-    // Example additional sponsors:
-    // { name: 'Sponsor 2', logo: '/s2.png', alt: 'Sponsor 2', isSquare: true, url: '#' },
-    // { name: 'Sponsor 3', logo: '/s3.png', alt: 'Sponsor 3', isSquare: false, url: '#' },
   ]
 
   const communityPartners = [
@@ -28,6 +25,13 @@ export default function Sponsorship() {
       alt: 'Start the Up Logo',
       isSquare: true,
       url: 'https://www.linkedin.com/company/biosphere-club-vit-chennai/posts/?feedView=all'
+    },
+    {
+      name: 'CodeCrafters.io',
+      logo: '/codecrafters.png',
+      alt: 'CodeCrafters.io Logo',
+      isSquare: true,
+      url: 'https://www.linkedin.com/company/biosphere-club-vit-chennai/posts/?feedView=all'
     }
   ]
 
@@ -36,7 +40,7 @@ export default function Sponsorship() {
       <div className="max-w-7xl mx-auto px-6 py-20">
 
         {/* Section Title */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <h2 className="text-5xl md:text-6xl font-black mb-4 tracking-tight">
             <span className="bg-gradient-to-r from-lime-300 via-emerald-400 to-green-400 bg-clip-text text-transparent animate-gradient-x">
               SPONSORS & PARTNERS
@@ -48,8 +52,8 @@ export default function Sponsorship() {
         </div>
 
         {/* ===== Sponsors Section ===== */}
-        <div className="flex flex-col items-center mb-24">
-          <h3 className="text-3xl font-bold text-center mb-10 bg-gradient-to-r from-lime-300 via-emerald-400 to-green-400 bg-clip-text text-transparent">
+        <div className="flex flex-col items-center mb-12">
+          <h3 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-lime-300 via-emerald-400 to-green-400 bg-clip-text text-transparent">
             Sponsors
           </h3>
 
@@ -62,7 +66,7 @@ export default function Sponsorship() {
                 rel="noopener noreferrer"
                 className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl 
                            border-2 border-emerald-400/40 rounded-3xl p-10 text-center 
-                           w-80 md:w-96 hover:border-emerald-300/60 hover:scale-105 
+                           w-72 md:w-80 hover:border-emerald-300/60 hover:scale-105 
                            transition-all duration-300 cursor-pointer"
               >
                 <h4 className="text-2xl font-bold text-emerald-400 mb-6">{sponsor.name}</h4>
@@ -84,7 +88,7 @@ export default function Sponsorship() {
 
         {/* ===== Community Partners Section ===== */}
         <div className="flex flex-col items-center">
-          <h3 className="text-3xl font-bold text-center mb-10 bg-gradient-to-r from-lime-300 via-emerald-400 to-green-400 bg-clip-text text-transparent">
+          <h3 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-lime-300 via-emerald-400 to-green-400 bg-clip-text text-transparent">
             Community Partners
           </h3>
 
@@ -97,7 +101,7 @@ export default function Sponsorship() {
                 rel="noopener noreferrer"
                 className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl 
                            border-2 border-emerald-400/40 rounded-3xl p-10 text-center 
-                           w-80 md:w-96 hover:border-emerald-300/60 hover:scale-105 
+                           w-72 md:w-80 hover:border-emerald-300/60 hover:scale-105 
                            transition-all duration-300 cursor-pointer"
               >
                 <h4 className="text-2xl font-bold text-emerald-400 mb-6">{partner.name}</h4>
