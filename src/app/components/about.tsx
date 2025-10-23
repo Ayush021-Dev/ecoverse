@@ -16,7 +16,7 @@ export default function About() {
         {/* Left Side Subtle Elements */}
         <div className="absolute top-40 left-10 w-60 h-60 bg-gradient-to-br from-emerald-500/10 via-green-400/5 to-transparent rounded-full blur-3xl animate-glow-pulse"></div>
         <div className="absolute top-2/3 left-20 w-32 h-32 bg-gradient-to-r from-emerald-400/15 to-lime-400/10 rounded-2xl rotate-12 animate-drift-left blur-sm"></div>
-      </div>
+       </div>
 
       {/* Main Content */}
       <main className="relative z-10 px-6 py-12 pt-24">
