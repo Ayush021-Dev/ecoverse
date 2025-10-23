@@ -66,7 +66,7 @@ export default function Coordinators() {
     { name: "Bhaskar Reddy", role: "Coordinator", image: "/bhaskar.jpg" },
     { name: "Sai Charitha", role: "Coordinator", image: "/charitha.jpg" },
     { name: "Ayushi Tewari", role: "Coordinator", image: "/ayushi.jpg" },
-    { name: "Shruti Sinha", role: "Coordinator", image: "/shruti.jpg" },
+    { name: "Shruti Sinha", role: "Coordinator", image: "/shruti.JPG" },
     { name: "Navami Dileep", role: "Coordinator", image: "/navami.jpeg" }
   ]
 
