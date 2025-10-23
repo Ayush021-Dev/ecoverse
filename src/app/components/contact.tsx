@@ -4,11 +4,12 @@ export default function Contact() {
     { name: "Melvin", phone: "+91 9080059840" },
     { name: "Lakshanya M", phone: "+91 9043677271" },
     { name: "Praveshika M", phone: "+91 7358115724" }
-  ]
+  ];
 
   return (
     <section id="contact" className="relative z-10 py-12">
       <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-6xl md:text-7xl font-black mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-green-300 via-emerald-400 to-lime-400 bg-clip-text text-transparent animate-gradient-x">
@@ -19,26 +20,37 @@ export default function Contact() {
             Get in touch with us for any queries
           </p>
         </div>
-        
+
+        {/* Contact Card */}
         <div className="max-w-3xl mx-auto">
           <div className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-8">
             <h3 className="text-2xl font-bold text-white mb-6">Get In Touch</h3>
-            
+
             <div className="space-y-4">
+
               {/* Email */}
-              <a href="mailto:biosphereclubvitcc@gmail.com" className="flex items-center group hover:bg-emerald-900/30 p-3 rounded-lg transition-all">
-                <div className="bg-emerald-800/50 p-3 rounded-full mr-4">
+              <a
+                href="mailto:biosphereclubvitcc@gmail.com"
+                className="flex flex-wrap items-center group hover:bg-emerald-900/30 p-3 rounded-lg transition-all"
+              >
+                <div className="bg-emerald-800/50 p-3 rounded-full mr-4 flex-shrink-0">
                   <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <span className="text-base text-gray-300 group-hover:text-emerald-400 transition-colors">biosphereclubvitcc@gmail.com</span>
+                <span className="text-base text-gray-300 group-hover:text-emerald-400 transition-colors break-words">
+                  biosphereclubvitcc@gmail.com
+                </span>
               </a>
 
-              {/* Phone Numbers Grid */}
+              {/* Phone Numbers */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {contacts.map((contact, index) => (
-                  <a key={index} href={`tel:${contact.phone.replace(/\s/g, '')}`} className="flex items-center group hover:bg-emerald-900/30 p-3 rounded-lg transition-all">
+                  <a
+                    key={index}
+                    href={`tel:${contact.phone.replace(/\s/g, '')}`}
+                    className="flex flex-wrap items-center group hover:bg-emerald-900/30 p-3 rounded-lg transition-all"
+                  >
                     <div className="bg-emerald-800/50 p-3 rounded-full mr-3 flex-shrink-0">
                       <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -58,7 +70,7 @@ export default function Contact() {
               {/* Social Media */}
               <div>
                 <h4 className="text-lg font-semibold text-white mb-4">Follow Us</h4>
-                <div className="flex space-x-4">
+                <div className="flex flex-wrap gap-4">
                   {/* Instagram */}
                   <a 
                     href="https://www.instagram.com/biosphere_club_vitcc?igsh=b3U4ZnF6MDYyZTB4" 
@@ -96,10 +108,11 @@ export default function Contact() {
                   </a>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

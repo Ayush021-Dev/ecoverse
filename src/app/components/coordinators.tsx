@@ -1,9 +1,34 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 
 export default function Coordinators() {
   const [showOtherCoords, setShowOtherCoords] = useState(false)
+  const otherCoordsRef = useRef<HTMLButtonElement | null>(null) // ✅ fixed typing
+
+  const handleToggle = () => {
+    // Handles both opening and closing from the top button
+    if (showOtherCoords && otherCoordsRef.current) {
+      otherCoordsRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      })
+      setTimeout(() => setShowOtherCoords(false), 400)
+    } else {
+      setShowOtherCoords(true)
+    }
+  }
+
+  const handleBottomClose = () => {
+    // ✅ When bottom "Show Less" is clicked, scroll to top button before collapsing
+    if (otherCoordsRef.current) {
+      otherCoordsRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      })
+    }
+    setTimeout(() => setShowOtherCoords(false), 400)
+  }
 
   const faculty = {
     name: "Dr. Umayal C",
@@ -24,19 +49,25 @@ export default function Coordinators() {
   ]
 
   const otherCoords = [
-    { name: "Ayush", role: "Technical Lead", image: "/ayush.jpg" },
+    { name: "Ayush Shrivastava", role: "Technical Lead", image: "/ayush.jpg" },
     { name: "Pragadeeshwaran R V", role: "Technical Lead", image: "/pragadeesh.jpg" },
     { name: "Adithiaya Murugan K S", role: "WebDev Coordinator", image: "/adithiaya.jpg" },
-    //{ name: "Sukrati Verma", role: "Design Lead", image: "/sukrati.jpg" },
+    { name: "Sukrati Verma", role: "Design Lead", image: "/sukrati.jpg" },
     { name: "Hemasri C", role: "Photo and videography lead", image: "/hema.jpg" },
-    //{ name: "Yuvashree", role: "Coordinator", image: "/yuvashree.jpg" },
+    { name: "Yuvashree N", role: "Coordinator", image: "/yuvashree.jpg" },
     { name: "Rinuvarshini", role: "Coordinator", image: "/rinu2.png" },
+    { name: "Nishu Kumari", role: "Coordinator", image: "/nishu.jpg" },
     { name: "Archit Rajesh", role: "Coordinator", image: "/archit.jpg" },
     { name: "Santhosh Balaganesh S", role: "Coordinator", image: "/Santhosh.jpg" },
     { name: "Manjari Muthukumaran", role: "Coordinator", image: "/Manjari.jpeg" },
     { name: "Joshita K", role: "Coordinator", image: "/joshitaK.jpg" },
     { name: "Joshitha A", role: "Coordinator", image: "/JoshithaA.jpg" },
-    { name: "Ayushi Tewari", role: "Coordinator", image: "/ayushi.jpg" }
+    { name: "Amrutha", role: "Coordinator", image: "/Amrutha.jpg" },
+    { name: "Bhaskar Reddy", role: "Coordinator", image: "/bhaskar.jpg" },
+    { name: "Sai Charitha", role: "Coordinator", image: "/charitha.jpg" },
+    { name: "Ayushi Tewari", role: "Coordinator", image: "/ayushi.jpg" },
+    { name: "Shruti Sinha", role: "Coordinator", image: "/shruti.jpg" },
+    { name: "Navami Dileep", role: "Coordinator", image: "/navami.jpeg" }
   ]
 
   return (
@@ -52,17 +83,12 @@ export default function Coordinators() {
             Meet the team driving EcoVerse 2025
           </p>
         </div>
-        
+
         {/* Faculty Coordinator */}
         <div className="flex justify-center mb-12">
           <div className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
             <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
-              <Image 
-                src={faculty.image} 
-                alt={faculty.name}
-                fill
-                className="object-cover"
-              />
+              <Image src={faculty.image} alt={faculty.name} fill className="object-cover" />
             </div>
             <h3 className="text-lg font-bold text-white mb-2">{faculty.name}</h3>
             <p className="text-emerald-400 text-sm mb-1">{faculty.role}</p>
@@ -75,12 +101,7 @@ export default function Coordinators() {
           {leadership.map((leader, index) => (
             <div key={index} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
               <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
-                <Image 
-                  src={leader.image} 
-                  alt={leader.name}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={leader.image} alt={leader.name} fill className="object-cover" />
               </div>
               <h3 className="text-lg font-bold text-white mb-2">{leader.name}</h3>
               <p className="text-emerald-400 text-sm">{leader.role}</p>
@@ -93,12 +114,7 @@ export default function Coordinators() {
           {studentCoords.map((coord, index) => (
             <div key={index} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
               <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
-                <Image 
-                  src={coord.image} 
-                  alt={coord.name}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={coord.image} alt={coord.name} fill className="object-cover" />
               </div>
               <h3 className="text-lg font-bold text-white mb-2">{coord.name}</h3>
               <p className="text-emerald-400 text-sm">{coord.role}</p>
@@ -106,17 +122,18 @@ export default function Coordinators() {
           ))}
         </div>
 
-        {/* Toggle Button */}
+        {/* Toggle Button (Top) */}
         <div className="flex justify-center mt-12">
           <button
-            onClick={() => setShowOtherCoords(!showOtherCoords)}
+            ref={otherCoordsRef}
+            onClick={handleToggle}
             className="group relative px-8 py-4 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-bold rounded-full shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 flex items-center gap-3"
           >
             <span>{showOtherCoords ? 'Show Less' : 'Other Coordinators'}</span>
-            <svg 
+            <svg
               className={`w-5 h-5 transition-transform duration-300 ${showOtherCoords ? 'rotate-180' : ''}`}
-              fill="none" 
-              stroke="currentColor" 
+              fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -125,22 +142,35 @@ export default function Coordinators() {
         </div>
 
         {/* Other Coordinators - Collapsible */}
-        <div className={`overflow-hidden transition-all duration-500 ${showOtherCoords ? 'max-h-[2000px] opacity-100 mt-12' : 'max-h-0 opacity-0'}`}>
+        <div className={`overflow-hidden transition-all duration-500 ${showOtherCoords ? 'max-h-[9000px] opacity-100 mt-12' : 'max-h-0 opacity-0'}`}>
           <div className="flex justify-center gap-8 flex-wrap max-w-5xl mx-auto">
             {otherCoords.map((coord, index) => (
               <div key={index} className="bg-gradient-to-br from-emerald-900/90 to-green-900/90 backdrop-blur-xl border-2 border-emerald-400/40 rounded-3xl p-6 text-center w-72">
                 <div className="relative bg-gradient-to-br from-emerald-800/50 to-green-800/50 border-2 border-emerald-400/30 rounded-2xl h-40 w-40 mx-auto mb-4 overflow-hidden">
-                  <Image 
-                    src={coord.image} 
-                    alt={coord.name}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={coord.image} alt={coord.name} fill className="object-cover" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{coord.name}</h3>
                 <p className="text-emerald-400 text-sm">{coord.role}</p>
               </div>
             ))}
+          </div>
+
+          {/* Bottom "Show Less" button */}
+          <div className="flex justify-center mt-12 mb-8">
+            <button
+              onClick={handleBottomClose}
+              className="group relative px-8 py-4 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-bold rounded-full shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 flex items-center gap-3"
+            >
+              <span>Show Less</span>
+              <svg
+                className="w-5 h-5 rotate-180 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

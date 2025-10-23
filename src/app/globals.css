@@ -184,6 +184,10 @@ nav a:focus-visible {
   text-shadow: none !important;
 }
 
+.transition-max-height {
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
 /* General focus styles for other elements (keeping accessibility) */
 button:focus:not(nav button),
 input:focus,
