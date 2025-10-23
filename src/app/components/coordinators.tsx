@@ -25,12 +25,18 @@ export default function Coordinators() {
 
   const otherCoords = [
     { name: "Ayush", role: "Technical Lead", image: "/ayush.jpg" },
-    { name: "Pragadeesh", role: "Technical Lead", image: "/pragadeesh.jpg" },
-    { name: "Aditya K S", role: "WebDev Coordinator", image: "/aditya.jpg" },
-    { name: "Sukrati Verma", role: "Design Lead", image: "/sukrati.jpg" },
-    { name: "Hema", role: "Coordinator", image: "/hema.jpg" },
-    { name: "Yuvashree", role: "Coordinator", image: "/yuvashree.jpg" },
-    { name: "Ayushi", role: "Coordinator", image: "/ayushi.jpg" }
+    { name: "Pragadeeshwaran R V", role: "Technical Lead", image: "/pragadeesh.jpg" },
+    { name: "Adithiaya Murugan K S", role: "WebDev Coordinator", image: "/adithiaya.jpg" },
+    //{ name: "Sukrati Verma", role: "Design Lead", image: "/sukrati.jpg" },
+    { name: "Hemasri C", role: "Photo and videography lead", image: "/hema.jpg" },
+    //{ name: "Yuvashree", role: "Coordinator", image: "/yuvashree.jpg" },
+    { name: "Rinuvarshini", role: "Coordinator", image: "/rinu2.png" },
+    { name: "Archit Rajesh", role: "Coordinator", image: "/archit.jpg" },
+    { name: "Santhosh Balaganesh S", role: "Coordinator", image: "/Santhosh.jpg" },
+    { name: "Manjari Muthukumaran", role: "Coordinator", image: "/Manjari.jpeg" },
+    { name: "Joshita K", role: "Coordinator", image: "/joshitaK.jpg" },
+    { name: "Joshitha A", role: "Coordinator", image: "/JoshithaA.jpg" },
+    { name: "Ayushi Tewari", role: "Coordinator", image: "/ayushi.jpg" }
   ]
 
   return (
