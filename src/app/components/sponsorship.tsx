@@ -9,6 +9,13 @@ export default function Sponsorship() {
       isSquare: false,
       url: 'https://www.linkedin.com/posts/biosphere-club-vit-chennai_ecoverse-k7security-sponsorship-activity-7386667196036329472-LESp'
     },
+    {
+      name: 'CodeCrafters.io',
+      logo: '/codecrafters.png',
+      alt: 'CodeCrafters.io Logo',
+      isSquare: true,
+      url: 'https://www.linkedin.com/company/biosphere-club-vit-chennai/posts/?feedView=all'
+    }
   ]
 
   const communityPartners = [
@@ -23,13 +30,6 @@ export default function Sponsorship() {
       name: 'Start the Up',
       logo: '/STU1.jpg',
       alt: 'Start the Up Logo',
-      isSquare: true,
-      url: 'https://www.linkedin.com/company/biosphere-club-vit-chennai/posts/?feedView=all'
-    },
-    {
-      name: 'CodeCrafters.io',
-      logo: '/codecrafters.png',
-      alt: 'CodeCrafters.io Logo',
       isSquare: true,
       url: 'https://www.linkedin.com/company/biosphere-club-vit-chennai/posts/?feedView=all'
     }
@@ -51,7 +51,7 @@ export default function Sponsorship() {
           </p>
         </div>
 
-        {/* ===== Sponsors Section ===== */}
+        {/* Sponsors Section */}
         <div className="flex flex-col items-center mb-12">
           <h3 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-lime-300 via-emerald-400 to-green-400 bg-clip-text text-transparent">
             Sponsors
@@ -70,23 +70,23 @@ export default function Sponsorship() {
                            transition-all duration-300 cursor-pointer"
               >
                 <h4 className="text-2xl font-bold text-emerald-400 mb-6">{sponsor.name}</h4>
-                <div className="bg-white/95 border-2 border-emerald-400/30 rounded-2xl h-40 flex items-center justify-center p-4">
-                  <div className={sponsor.isSquare ? "h-full aspect-square" : "w-full h-full"}>
-                    <Image
-                      src={sponsor.logo}
-                      alt={sponsor.alt}
-                      width={sponsor.isSquare ? 160 : 280}
-                      height={sponsor.isSquare ? 160 : 100}
-                      className="object-contain w-full h-full"
-                    />
-                  </div>
+
+                {/* White placeholder - keep rectangular */}
+                <div className="bg-white/95 border-2 border-emerald-400/30 rounded-2xl h-40 flex items-center justify-center overflow-hidden">
+                  <Image
+                    src={sponsor.logo}
+                    alt={sponsor.alt}
+                    width={250}
+                    height={160}
+                    className={`object-contain ${sponsor.isSquare ? 'h-full w-auto' : 'w-full h-full'}`}
+                  />
                 </div>
               </a>
             ))}
           </div>
         </div>
 
-        {/* ===== Community Partners Section ===== */}
+        {/* Community Partners Section */}
         <div className="flex flex-col items-center">
           <h3 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-lime-300 via-emerald-400 to-green-400 bg-clip-text text-transparent">
             Community Partners
@@ -105,13 +105,15 @@ export default function Sponsorship() {
                            transition-all duration-300 cursor-pointer"
               >
                 <h4 className="text-2xl font-bold text-emerald-400 mb-6">{partner.name}</h4>
-                <div className="bg-white/95 border-2 border-emerald-400/30 rounded-2xl h-40 flex items-center justify-center p-2">
+
+                {/* White placeholder - keep rectangular */}
+                <div className="bg-white/95 border-2 border-emerald-400/30 rounded-2xl h-40 flex items-center justify-center overflow-hidden">
                   <Image
                     src={partner.logo}
                     alt={partner.alt}
-                    width={partner.isSquare ? 160 : 280}
-                    height={partner.isSquare ? 160 : 100}
-                    className="object-contain w-full h-full"
+                    width={250}
+                    height={160}
+                    className={`object-contain ${partner.isSquare ? 'h-full w-auto' : 'w-full h-full'}`}
                   />
                 </div>
               </a>
