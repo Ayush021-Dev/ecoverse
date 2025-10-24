@@ -20,14 +20,13 @@ export default function Coordinators() {
   }
 
   const handleBottomClose = () => {
-    // ✅ When bottom "Show Less" is clicked, scroll to top button before collapsing
     if (otherCoordsRef.current) {
       otherCoordsRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
       })
     }
-    setTimeout(() => setShowOtherCoords(false), 400)
+    setTimeout(() => setShowOtherCoords(false), 200)
   }
 
   const faculty = {
