@@ -166,8 +166,8 @@ export default function CreateTeam() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0]
-      if (file.size > 3 * 1024 * 1024) {
-        setError('File size must be less than 3MB')
+      if (file.size > 15 * 1024 * 1024) {
+        setError('File size must be less than 15MB')
         return
       }
       if (!file.type.startsWith('image/')) {
@@ -577,7 +577,7 @@ export default function CreateTeam() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-yellow-400 font-bold">•</span>
-                <span>Payment receipt upload is mandatory (max 3MB image file)</span>
+                <span>Payment receipt upload is mandatory (max 15MB image file)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-yellow-400 font-bold">•</span>
@@ -870,7 +870,7 @@ export default function CreateTeam() {
                     {paymentReceipt && (
                       <p className="text-emerald-400 text-sm mt-2">✓ File selected: {paymentReceipt.name}</p>
                     )}
-                    <p className="text-gray-500 text-xs mt-2">Max file size: 3MB. Accepted formats: JPG, PNG, etc.</p>
+                    <p className="text-gray-500 text-xs mt-2">Max file size: 15MB. Accepted formats: JPG, PNG, etc.</p>
                   </div>
 
                   {error && (
