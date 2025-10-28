@@ -11,7 +11,7 @@ export default function Timeline() {
       id: 2,
       date: "2nd NOV",
       title: "Registration ends",
-      subtitle: "& Online skills workshop",
+      subtitle: "",
       type: "deadline",
       side: "right"
     },

@@ -14,6 +14,13 @@ export default function Sponsorship() {
       logo: '/codecrafters.png',
       alt: 'CodeCrafters.io Logo',
       isSquare: true,
+      url: 'https://www.linkedin.com/posts/biosphere-club-vit-chennai_ecoverse-codecrafters-sponsorship-activity-7387386130759045120-Du5B'
+    },
+    {
+      name: 'Swelect',
+      logo: '/swelect.jpg',
+      alt: 'Swelect Logo',
+      isSquare: true,
       url: 'https://www.linkedin.com/company/biosphere-club-vit-chennai/posts/?feedView=all'
     }
   ]

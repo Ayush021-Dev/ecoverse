@@ -80,7 +80,7 @@ export default function AboutEcoverse() {
                 </div>
                 <div className="flex items-center text-emerald-300">
                   <span className="text-emerald-400 mr-3">👥</span>
-                  <span className="text-sm">300+ participants from across India</span>
+                  <span className="text-sm">300+ participants from across Tamil Nadu</span>
                 </div>
                 <div className="flex items-center text-emerald-300">
                   <span className="text-emerald-400 mr-3">🎯</span>
