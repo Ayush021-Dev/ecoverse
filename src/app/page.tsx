@@ -146,7 +146,7 @@ export default function Home() {
 
         {/* Modern CTA Buttons */}
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mb-8 w-full max-w-md md:max-w-none mx-auto md:justify-center">
-          <Link href="#register" passHref className="w-full md:w-auto">
+          <Link href="/create-team" passHref className="w-full md:w-auto">
             <button className="w-full group relative px-10 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full overflow-hidden shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
               <span className="relative z-10">Register Now</span>
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

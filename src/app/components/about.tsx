@@ -318,8 +318,8 @@ export default function About() {
     <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
   </a>
 
-  <a href="/brochure.pdf" download className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105 text-center">
-    <span className="relative z-10">Download Brochure</span>
+  <a href="/EcoVerse-Poster.pdf" download className="group relative px-10 py-4 border-2 border-emerald-400 text-emerald-400 font-bold rounded-full overflow-hidden hover:text-black transition-all duration-300 transform hover:scale-105 text-center">
+    <span className="relative z-10">Download Poster</span>
     <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
   </a>
 </div>

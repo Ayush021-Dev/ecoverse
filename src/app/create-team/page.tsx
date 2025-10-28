@@ -46,6 +46,8 @@ export default function CreateTeam() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [generatedTeamId, setGeneratedTeamId] = useState(0)
+  const [paymentReceipt, setPaymentReceipt] = useState<File | null>(null)
+  const [copied, setCopied] = useState(false)
 
   // Team data
   const [teamData, setTeamData] = useState<TeamData>({
@@ -111,7 +113,7 @@ export default function CreateTeam() {
     return true
   }
 
-  const validateMemberData = (data: MemberData, role: string) => {
+  const validateMemberData = (data: MemberData, role: string, isResumeOptional: boolean = false) => {
     if (!data.name.trim()) {
       setError(`${role} name is required`)
       return false
@@ -129,27 +131,24 @@ export default function CreateTeam() {
       return false
     }
 
-    if (!data.resumeLink.trim()) {
-      setError(`${role} resume link is required`)
-      return false
-    }
-
-    try {
-      new URL(data.resumeLink)
-    } catch {
-      setError(`${role} resume link must be a valid URL`)
-      return false
+    if (!isResumeOptional && data.resumeLink.trim()) {
+      try {
+        new URL(data.resumeLink)
+      } catch {
+        setError(`${role} resume link must be a valid URL`)
+        return false
+      }
     }
 
     return true
   }
 
   const validateStep2 = () => {
-    if (!validateMemberData(leaderData, 'Team Leader')) return false
+    if (!validateMemberData(leaderData, 'Team Leader', true)) return false
     
     const memberCount = teamData.teamSize - 1
     for (let i = 0; i < memberCount; i++) {
-      if (!validateMemberData(membersData[i], `Member ${i + 2}`)) {
+      if (!validateMemberData(membersData[i], `Member ${i + 2}`, true)) {
         return false
       }
     }
@@ -159,11 +158,32 @@ export default function CreateTeam() {
   const handleNext = () => {
     if (step === 1 && validateStep1()) {
       setStep(2)
+    } else if (step === 2 && validateStep2()) {
+      setStep(3)
+    }
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0]
+      if (file.size > 5 * 1024 * 1024) {
+        setError('File size must be less than 5MB')
+        return
+      }
+      if (!file.type.startsWith('image/')) {
+        setError('Only image files are allowed')
+        return
+      }
+      setPaymentReceipt(file)
+      setError('')
     }
   }
 
   const handleSubmit = async () => {
-    if (!validateStep2()) return
+    if (!paymentReceipt) {
+      setError('Please upload payment receipt')
+      return
+    }
 
     setLoading(true)
     setError('')
@@ -181,6 +201,7 @@ export default function CreateTeam() {
         return
       }
 
+      // First create team without payment info
       const { data: team, error: teamError } = await supabase
         .from('teams')
         .insert({
@@ -195,6 +216,32 @@ export default function CreateTeam() {
 
       const teamId = team.id
 
+      // Upload payment receipt
+      const fileExt = paymentReceipt.name.split('.').pop()
+      const fileName = `${teamId}_${Date.now()}.${fileExt}`
+      
+      const { error: uploadError } = await supabase.storage
+        .from('payment-receipts')
+        .upload(fileName, paymentReceipt)
+
+      if (uploadError) throw new Error(`Receipt upload failed: ${uploadError.message}`)
+
+      // Get public URL for the uploaded file
+      const { data: urlData } = supabase.storage
+        .from('payment-receipts')
+        .getPublicUrl(fileName)
+
+      // Update team with payment receipt URL
+      const { error: updateError } = await supabase
+        .from('teams')
+        .update({
+          payment_receipt_url: urlData.publicUrl,
+          payment_uploaded_at: new Date().toISOString()
+        })
+        .eq('id', teamId)
+
+      if (updateError) throw new Error(`Failed to save payment receipt URL: ${updateError.message}`)
+
       const { error: leaderError } = await supabase
         .from('team_members')
         .insert({
@@ -204,7 +251,7 @@ export default function CreateTeam() {
           name: leaderData.name.trim(),
           phone: leaderData.phone.replace(/\s+/g, ''),
           email: leaderData.email.trim().toLowerCase(),
-          resume_link: leaderData.resumeLink.trim()
+          resume_link: leaderData.resumeLink.trim() || 'N/A'
         })
 
       if (leaderError) throw new Error(`Leader registration failed: ${leaderError.message}`)
@@ -220,7 +267,7 @@ export default function CreateTeam() {
             name: membersData[i].name.trim(),
             phone: membersData[i].phone.replace(/\s+/g, ''),
             email: membersData[i].email.trim().toLowerCase(),
-            resume_link: membersData[i].resumeLink.trim()
+            resume_link: membersData[i].resumeLink.trim() || 'N/A'
           })
         }
 
@@ -241,6 +288,12 @@ export default function CreateTeam() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(generatedTeamId.toString())
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   const handleViewTeam = async () => {
@@ -291,7 +344,7 @@ export default function CreateTeam() {
         name: leader.name,
         phone: leader.phone,
         email: leader.email,
-        resumeLink: leader.resume_link
+        resumeLink: leader.resume_link === 'N/A' ? '' : leader.resume_link
       })
       
       const updatedMembers = [...membersData]
@@ -300,7 +353,7 @@ export default function CreateTeam() {
           name: member.name,
           phone: member.phone,
           email: member.email,
-          resumeLink: member.resume_link
+          resumeLink: member.resume_link === 'N/A' ? '' : member.resume_link
         }
       })
       setMembersData(updatedMembers)
@@ -339,7 +392,7 @@ export default function CreateTeam() {
           name: leaderData.name.trim(),
           phone: leaderData.phone.replace(/\s+/g, ''),
           email: leaderData.email.trim().toLowerCase(),
-          resume_link: leaderData.resumeLink.trim()
+          resume_link: leaderData.resumeLink.trim() || 'N/A'
         })
         .eq('team_id', teamId)
         .eq('member_role', 'leader')
@@ -355,7 +408,7 @@ export default function CreateTeam() {
               name: membersData[i].name.trim(),
               phone: membersData[i].phone.replace(/\s+/g, ''),
               email: membersData[i].email.trim().toLowerCase(),
-              resume_link: membersData[i].resumeLink.trim()
+              resume_link: membersData[i].resumeLink.trim() || 'N/A'
             })
             .eq('team_id', teamId)
             .eq('member_number', i + 2)
@@ -376,6 +429,21 @@ export default function CreateTeam() {
     }
   }
 
+  const resetForm = () => {
+    setSuccess(false)
+    setStep(1)
+    setTeamData({ teamName: '', teamSize: 2, trackName: '' })
+    setLeaderData({ name: '', phone: '', email: '', resumeLink: '' })
+    setMembersData([
+      { name: '', phone: '', email: '', resumeLink: '' },
+      { name: '', phone: '', email: '', resumeLink: '' },
+      { name: '', phone: '', email: '', resumeLink: '' }
+    ])
+    setPaymentReceipt(null)
+    setGeneratedTeamId(0)
+    setError('')
+  }
+
   if (success) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-emerald-950 to-black flex items-center justify-center px-6">
@@ -390,26 +458,67 @@ export default function CreateTeam() {
             </div>
 
             <h2 className="text-4xl font-black text-white mb-4">
-              {isEditing ? 'Team Updated!' : 'Team Registered!'}
+              {isEditing ? 'Team Updated!' : 'Registration Complete!'}
             </h2>
-            <p className="text-emerald-300 text-lg mb-4">
+            <p className="text-emerald-300 text-lg mb-6">
               {isEditing 
                 ? `Team "${teamData.teamName}" has been updated successfully.`
-                : `Your team "${teamData.teamName}" has been created successfully.`
+                : `Your team "${teamData.teamName}" has been registered successfully.`
               }
             </p>
             
-            <div className="bg-emerald-900/30 border border-emerald-400/30 rounded-xl p-6 mb-8">
-              <p className="text-gray-400 text-sm mb-2">Your Team ID</p>
-              <p className="text-5xl font-black text-emerald-400 mb-2">{generatedTeamId}</p>
-              <p className="text-gray-500 text-xs">Use this ID for PPT submission</p>
+            <div className="bg-yellow-900/30 border-2 border-yellow-400 rounded-xl p-6 mb-6 animate-pulse">
+              <p className="text-yellow-300 text-sm font-bold mb-3">⚠️ IMPORTANT - SAVE YOUR TEAM ID</p>
+              <p className="text-5xl font-black text-yellow-400 mb-3">{generatedTeamId}</p>
+              <p className="text-yellow-200 text-xs mb-4">You will need this ID for PPT submission and throughout the hackathon</p>
+              
+              <button
+                onClick={copyToClipboard}
+                className="w-full px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                {copied ? (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Copied to Clipboard!
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Copy Team ID to Clipboard
+                  </>
+                )}
+              </button>
             </div>
 
-            <Link href="/">
-              <button className="w-full px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105">
-                Back to Home
+            <div className="bg-emerald-900/30 border border-emerald-400/30 rounded-xl p-6 mb-6">
+              <p className="text-emerald-300 font-bold mb-3">📱 Join WhatsApp Group for Updates</p>
+              <a
+                href="https://chat.whatsapp.com/Dv2pFRSVfrXKjLaEDyCYRO?mode=wwc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all transform hover:scale-105"
+              >
+                Join WhatsApp Group
+              </a>
+            </div>
+
+            <div className="flex gap-4">
+              <button
+                onClick={resetForm}
+                className="flex-1 px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105"
+              >
+                Back to Create Team
               </button>
-            </Link>
+              <Link href="/" className="flex-1">
+                <button className="w-full px-8 py-4 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                  Home
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -450,16 +559,30 @@ export default function CreateTeam() {
             </p>
           </div>
 
-          {/* Guidelines Box - Always visible at top */}
-          <div className="bg-emerald-900/20 border border-emerald-400/20 rounded-xl p-6 mb-8">
-            <h3 className="text-emerald-300 font-bold text-xl mb-3">📋 Guidelines:</h3>
-            <ul className="text-gray-400 text-sm space-y-2">
-              <li>• Team size must be between 2-4 members</li>
-              <li>• All team members must be registered students</li>
-              <li>• Each member must provide valid contact details and resume</li>
-              <li>• Resume links should be accessible (Google Drive with view permissions recommended)</li>
-              <li>• You will receive a Team ID after registration for PPT submission</li>
-              <li>• Keep your Team ID safe - you&apos;ll need it throughout the hackathon</li>
+          {/* Guidelines Box */}
+          <div className="bg-yellow-900/20 border-2 border-yellow-400/50 rounded-xl p-6 mb-8">
+            <h3 className="text-yellow-300 font-bold text-xl mb-3">⚡ Important Guidelines:</h3>
+            <ul className="text-gray-300 text-sm space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-yellow-400 font-bold">•</span>
+                <span><strong className="text-yellow-300">Team ID will be generated after registration - SAVE IT!</strong> You&apos;ll need it for PPT submission</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-yellow-400 font-bold">•</span>
+                <span>Team size must be between 2-4 members</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-yellow-400 font-bold">•</span>
+                <span>Resume link is <strong>optional</strong> for all members</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-yellow-400 font-bold">•</span>
+                <span>Payment receipt upload is mandatory (max 5MB image file)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-yellow-400 font-bold">•</span>
+                <span>Join the WhatsApp group after registration for updates</span>
+              </li>
             </ul>
           </div>
 
@@ -495,7 +618,7 @@ export default function CreateTeam() {
                   : 'bg-emerald-900/30 text-emerald-300 hover:bg-emerald-900/50'
               }`}
             >
-              Edit Team
+              View/Edit Team
             </button>
           </div>
 
@@ -507,9 +630,13 @@ export default function CreateTeam() {
                   <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold ${step >= 1 ? 'bg-emerald-500 text-white' : 'bg-gray-700 text-gray-400'}`}>
                     1
                   </div>
-                  <div className={`h-1 w-16 ${step >= 2 ? 'bg-emerald-500' : 'bg-gray-700'}`}></div>
+                  <div className={`h-1 w-12 ${step >= 2 ? 'bg-emerald-500' : 'bg-gray-700'}`}></div>
                   <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold ${step >= 2 ? 'bg-emerald-500 text-white' : 'bg-gray-700 text-gray-400'}`}>
                     2
+                  </div>
+                  <div className={`h-1 w-12 ${step >= 3 ? 'bg-emerald-500' : 'bg-gray-700'}`}></div>
+                  <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold ${step >= 3 ? 'bg-emerald-500 text-white' : 'bg-gray-700 text-gray-400'}`}>
+                    3
                   </div>
                 </div>
               </div>
@@ -622,7 +749,7 @@ export default function CreateTeam() {
                     </div>
 
                     <div>
-                      <label className="block text-emerald-300 font-semibold mb-2">Resume Link *</label>
+                      <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
                       <input
                         type="url"
                         value={leaderData.resumeLink}
@@ -673,7 +800,7 @@ export default function CreateTeam() {
                       </div>
 
                       <div>
-                        <label className="block text-emerald-300 font-semibold mb-2">Resume Link *</label>
+                        <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
                         <input
                           type="url"
                           value={membersData[index].resumeLink}
@@ -684,6 +811,67 @@ export default function CreateTeam() {
                       </div>
                     </div>
                   ))}
+
+                  {error && (
+                    <div className="bg-red-900/30 border border-red-500/50 rounded-xl p-4">
+                      <p className="text-red-300 text-sm">❌ {error}</p>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={handleNext}
+                    className="w-full px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold rounded-full shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-105"
+                  >
+                    Next: Payment Details
+                  </button>
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-bold text-emerald-300">Payment & Submission</h2>
+                    <button
+                      onClick={() => setStep(2)}
+                      className="text-emerald-400 hover:text-emerald-300 text-sm font-semibold"
+                    >
+                      ← Back
+                    </button>
+                  </div>
+
+                  <div className="bg-blue-900/30 border border-blue-400/50 rounded-xl p-6">
+                    <h3 className="text-blue-300 font-bold text-lg mb-3">💳 Payment Instructions</h3>
+                    <ol className="text-gray-300 text-sm space-y-2 mb-4">
+                      <li>1. Click the button below to open the payment portal</li>
+                      <li>2. Complete your payment</li>
+                      <li>3. Take a screenshot of your payment receipt</li>
+                      <li>4. Upload the receipt below and submit</li>
+                    </ol>
+                    <a
+                      href="https://eventhubcc.vit.ac.in/EventHub/eventPreview"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all transform hover:scale-105 text-center"
+                    >
+                      Open Payment Portal →
+                    </a>
+                  </div>
+
+                  <div>
+                    <label className="block text-emerald-300 font-semibold mb-2">Upload Payment Receipt *</label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="w-full px-4 py-3 bg-gray-900/50 border border-emerald-400/30 rounded-xl text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-600 file:text-white hover:file:bg-emerald-700 focus:outline-none focus:border-emerald-400 transition-colors"
+                      />
+                    </div>
+                    {paymentReceipt && (
+                      <p className="text-emerald-400 text-sm mt-2">✓ File selected: {paymentReceipt.name}</p>
+                    )}
+                    <p className="text-gray-500 text-xs mt-2">Max file size: 5MB. Accepted formats: JPG, PNG, etc.</p>
+                  </div>
 
                   {error && (
                     <div className="bg-red-900/30 border border-red-500/50 rounded-xl p-4">
@@ -778,6 +966,7 @@ export default function CreateTeam() {
                       <p className="text-gray-400 text-sm mb-1">Team Leader</p>
                       <p className="text-white font-semibold">{existingTeamData.leader.name}</p>
                       <p className="text-gray-400 text-sm mt-1">{existingTeamData.leader.email}</p>
+                      <p className="text-gray-400 text-sm">{existingTeamData.leader.phone}</p>
                     </div>
 
                     {existingTeamData.members.map((member, index: number) => (
@@ -785,6 +974,7 @@ export default function CreateTeam() {
                         <p className="text-gray-400 text-sm mb-1">Member {index + 2}</p>
                         <p className="text-white font-semibold">{member.name}</p>
                         <p className="text-gray-400 text-sm mt-1">{member.email}</p>
+                        <p className="text-gray-400 text-sm">{member.phone}</p>
                       </div>
                     ))}
                   </div>
@@ -849,7 +1039,6 @@ export default function CreateTeam() {
                     </select>
                   </div>
 
-                  {/* Leader */}
                   <div className="bg-gray-900/30 rounded-xl p-6 space-y-4">
                     <h3 className="text-lg font-bold text-emerald-400">Team Leader</h3>
 
@@ -885,7 +1074,7 @@ export default function CreateTeam() {
                     </div>
 
                     <div>
-                      <label className="block text-emerald-300 font-semibold mb-2">Resume Link *</label>
+                      <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
                       <input
                         type="url"
                         value={leaderData.resumeLink}
@@ -895,7 +1084,6 @@ export default function CreateTeam() {
                     </div>
                   </div>
 
-                  {/* Other Members */}
                   {Array.from({ length: teamData.teamSize - 1 }).map((_, index) => (
                     <div key={index} className="bg-gray-900/30 rounded-xl p-6 space-y-4">
                       <h3 className="text-lg font-bold text-emerald-400">Member {index + 2}</h3>
@@ -932,7 +1120,7 @@ export default function CreateTeam() {
                       </div>
 
                       <div>
-                        <label className="block text-emerald-300 font-semibold mb-2">Resume Link *</label>
+                        <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
                         <input
                           type="url"
                           value={membersData[index].resumeLink}
