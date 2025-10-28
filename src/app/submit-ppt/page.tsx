@@ -15,6 +15,7 @@ type SubmissionData = {
   ppt_file_url: string
   ppt_file_name: string
   file_size_mb: string
+  github_link: string
   submitted_at: string
   team_name: string
   team_leader_name: string
@@ -22,9 +23,10 @@ type SubmissionData = {
 
 export default function SubmitPPT() {
   const [activeTab, setActiveTab] = useState<'submit' | 'view'>('submit')
-  
+
   const [formData, setFormData] = useState({
-    teamId: ''
+    teamId: '',
+    githubLink: ''
   })
   const [teamInfo, setTeamInfo] = useState<TeamInfo | null>(null)
   const [file, setFile] = useState<File | null>(null)
@@ -43,14 +45,20 @@ export default function SubmitPPT() {
   const [teamValidated, setTeamValidated] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-    setError('')
+  const { name, value } = e.target
+  
+  setFormData({
+    ...formData,
+    [name]: value
+  })
+  setError('')
+  
+  // Only reset validation if teamId field is changed
+  if (name === 'teamId') {
     setTeamValidated(false)
     setTeamInfo(null)
   }
+}
 
   const validateTeamId = async () => {
     if (!formData.teamId.trim()) {
@@ -86,7 +94,7 @@ export default function SubmitPPT() {
         setLoadingTeamValidation(false)
         return
       }
-      
+
       setTeamInfo({
         teamName: team.team_name,
         leaderName: members?.name || 'N/A'
@@ -115,9 +123,9 @@ export default function SubmitPPT() {
         return
       }
 
-      const maxSize = 25 * 1024 * 1024
+      const maxSize = 15 * 1024 * 1024
       if (selectedFile.size > maxSize) {
-        setError('File size must be less than 25MB')
+        setError('File size must be less than 15MB')
         setFile(null)
         return
       }
@@ -133,6 +141,18 @@ export default function SubmitPPT() {
       return false
     }
 
+    if (!formData.githubLink.trim()) {
+      setError('Please enter your GitHub repository link')
+      return false
+    }
+
+    try {
+      new URL(formData.githubLink)
+    } catch {
+      setError('Please enter a valid GitHub repository URL')
+      return false
+    }
+
     if (!file) {
       setError('Please upload your presentation file')
       return false
@@ -143,7 +163,7 @@ export default function SubmitPPT() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!validateForm()) return
 
     setLoading(true)
@@ -190,7 +210,8 @@ export default function SubmitPPT() {
           team_id: teamId,
           ppt_file_url: publicUrl,
           ppt_file_name: file!.name,
-          file_size_mb: (file!.size / (1024 * 1024)).toFixed(2)
+          file_size_mb: (file!.size / (1024 * 1024)).toFixed(2),
+          github_link: formData.githubLink.trim()
         })
 
       if (dbError) {
@@ -254,7 +275,7 @@ export default function SubmitPPT() {
         setLoadingView(false)
         return
       }
-      
+
       setSubmissionData({
         ...submission,
         team_name: team.team_name,
@@ -271,7 +292,7 @@ export default function SubmitPPT() {
 
   const handleUpdateSubmission = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!submissionData) return
 
     if (!file) {
@@ -288,7 +309,7 @@ export default function SubmitPPT() {
 
       const urlParts = submissionData.ppt_file_url.split('/PPTs/')
       const oldFileName = urlParts.length > 1 ? urlParts[1] : null
-      
+
       if (oldFileName) {
         await supabase.storage
           .from('PPTs')
@@ -319,7 +340,8 @@ export default function SubmitPPT() {
         .update({
           ppt_file_url: publicUrl,
           ppt_file_name: file.name,
-          file_size_mb: (file.size / (1024 * 1024)).toFixed(2)
+          file_size_mb: (file.size / (1024 * 1024)).toFixed(2),
+          github_link: formData.githubLink.trim()
         })
         .eq('id', submissionData.id)
 
@@ -359,14 +381,14 @@ export default function SubmitPPT() {
             </h2>
             <p className="text-emerald-300 text-lg mb-8">
               {successType === 'edit'
-                ? 'Your presentation has been updated successfully!' 
+                ? 'Your presentation has been updated successfully!'
                 : 'Your presentation has been uploaded successfully. Good luck!'}
             </p>
 
             <button
               onClick={() => {
                 setSuccess(false)
-                setFormData({ teamId: '' })
+                setFormData({ teamId: '', githubLink: '' })
                 setFile(null)
                 setError('')
                 setActiveTab('submit')
@@ -426,11 +448,10 @@ export default function SubmitPPT() {
                 setSubmissionData(null)
                 setIsEditing(false)
               }}
-              className={`flex-1 py-3 rounded-xl font-semibold transition-all ${
-                activeTab === 'submit'
+              className={`flex-1 py-3 rounded-xl font-semibold transition-all ${activeTab === 'submit'
                   ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg'
                   : 'bg-emerald-900/30 text-emerald-300 hover:bg-emerald-900/50'
-              }`}
+                }`}
             >
               Submit New
             </button>
@@ -439,14 +460,13 @@ export default function SubmitPPT() {
                 setActiveTab('view')
                 setError('')
                 setViewError('')
-                setFormData({ teamId: '' })
+                setFormData({ teamId: '', githubLink: '' })
                 setFile(null)
               }}
-              className={`flex-1 py-3 rounded-xl font-semibold transition-all ${
-                activeTab === 'view'
+              className={`flex-1 py-3 rounded-xl font-semibold transition-all ${activeTab === 'view'
                   ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-lg'
                   : 'bg-emerald-900/30 text-emerald-300 hover:bg-emerald-900/50'
-              }`}
+                }`}
             >
               View & Edit
             </button>
@@ -498,7 +518,33 @@ export default function SubmitPPT() {
                     </div>
                   </div>
                 )}
+                <div className="bg-blue-900/20 border border-blue-400/20 rounded-xl p-5">
+                  <h3 className="text-blue-300 font-semibold mb-3">📋 Submission Instructions:</h3>
+                  <ul className="text-gray-400 text-sm space-y-2">
+                    <li>• Enter your Team ID and validate it first</li>
+                    <li>• Provide your GitHub repository link (project doesn&apos;t need to be complete)</li>
+                    <li>• An empty repository where you&apos;ll work on your project is sufficient</li>
+                    <li>• Upload your presentation file (<strong className="text-yellow-400">MAX 15MB</strong>)</li>
+                    <li>• Accepted formats: PPT, PPTX, or PDF</li>
+                    <li>• Each team can submit only once</li>
+                  </ul>
+                </div>
 
+                <div>
+                  <label className="block text-emerald-300 font-semibold mb-2">GitHub Repository Link *</label>
+                  <input
+                    type="url"
+                    name="githubLink"
+                    value={formData.githubLink}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-gray-900/50 border border-emerald-400/30 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition-colors"
+                    placeholder="https://github.com/username/repository"
+                    disabled={loading || !teamValidated}
+                  />
+                  <p className="text-gray-500 text-sm mt-2">
+                    Your project repository (can be empty initially)
+                  </p>
+                </div>
                 <div>
                   <label className="block text-emerald-300 font-semibold mb-2">Upload Presentation *</label>
                   <input
@@ -508,7 +554,7 @@ export default function SubmitPPT() {
                     className="w-full px-4 py-3 bg-gray-900/50 border border-emerald-400/30 rounded-xl text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-500 file:text-white hover:file:bg-emerald-600 file:cursor-pointer focus:outline-none focus:border-emerald-400 transition-colors"
                     disabled={loading || !teamValidated}
                   />
-                  <p className="text-gray-500 text-sm mt-2">Accepted: PPT, PPTX, PDF (Max 25MB)</p>
+                  <p className="text-gray-500 text-sm mt-2">Accepted: PPT, PPTX, PDF (Max 15MB)</p>
                   {file && (
                     <p className="text-emerald-400 text-sm mt-2">
                       ✓ {file.name} ({(file.size / (1024 * 1024)).toFixed(2)} MB)
@@ -516,21 +562,10 @@ export default function SubmitPPT() {
                   )}
                 </div>
 
-                <div className="bg-emerald-900/20 border border-emerald-400/20 rounded-xl p-4">
-                  <h3 className="text-emerald-300 font-semibold mb-2">📋 Instructions:</h3>
-                  <ul className="text-gray-400 text-sm space-y-1">
-                    <li>• Enter your Team ID received during team registration</li>
-                    <li>• Validate your Team ID before uploading</li>
-                    <li>• File size should not exceed 25MB</li>
-                    <li>• Each team can submit only once</li>
-                    <li>• Format: PPT, PPTX, or PDF</li>
-                  </ul>
-                </div>
-
                 {loading && uploadProgress > 0 && (
                   <div className="space-y-2">
                     <div className="w-full bg-gray-900/50 rounded-full h-3 overflow-hidden">
-                      <div 
+                      <div
                         className="bg-gradient-to-r from-emerald-500 to-green-600 h-full transition-all duration-500 rounded-full"
                         style={{ width: `${uploadProgress}%` }}
                       ></div>
@@ -592,7 +627,7 @@ export default function SubmitPPT() {
               ) : !isEditing ? (
                 <div className="space-y-6">
                   <h3 className="text-2xl font-bold text-emerald-300 mb-4">Your Submission</h3>
-                  
+
                   <div className="space-y-4">
                     <div className="bg-gray-900/30 rounded-xl p-4">
                       <p className="text-gray-400 text-sm mb-1">Team ID</p>
@@ -605,16 +640,28 @@ export default function SubmitPPT() {
                     </div>
 
                     <div className="bg-gray-900/30 rounded-xl p-4">
-                      <p className="text-gray-400 text-sm mb-1">Team Leader</p>
-                      <p className="text-white font-semibold">{submissionData.team_leader_name}</p>
-                    </div>
+  <p className="text-gray-400 text-sm mb-1">Team Leader</p>
+  <p className="text-white font-semibold">{submissionData.team_leader_name}</p>
+</div>
 
-                    <div className="bg-gray-900/30 rounded-xl p-4">
-                      <p className="text-gray-400 text-sm mb-1">Presentation File</p>
+<div className="bg-gray-900/30 rounded-xl p-4">
+  <p className="text-gray-400 text-sm mb-1">GitHub Repository</p>
+  <a 
+    href={submissionData.github_link} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="text-emerald-400 font-semibold hover:text-emerald-300 underline break-all"
+  >
+    {submissionData.github_link}
+  </a>
+</div>
+
+<div className="bg-gray-900/30 rounded-xl p-4">
+  <p className="text-gray-400 text-sm mb-1">Presentation File</p>
                       <p className="text-emerald-400 font-semibold mb-2">{submissionData.ppt_file_name}</p>
-                      <a 
-                        href={submissionData.ppt_file_url} 
-                        target="_blank" 
+                      <a
+                        href={submissionData.ppt_file_url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-emerald-300 hover:text-emerald-200 underline"
                       >
@@ -662,9 +709,20 @@ export default function SubmitPPT() {
                       <p className="text-white font-semibold">{submissionData.team_name}</p>
                     </div>
                     <div>
-                      <p className="text-gray-400 text-sm">Team Leader</p>
-                      <p className="text-white font-semibold">{submissionData.team_leader_name}</p>
-                    </div>
+  <p className="text-gray-400 text-sm">Team Leader</p>
+  <p className="text-white font-semibold">{submissionData.team_leader_name}</p>
+</div>
+<div>
+  <p className="text-gray-400 text-sm">GitHub Repository</p>
+  <a 
+    href={submissionData.github_link} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="text-emerald-400 text-sm hover:text-emerald-300 underline break-all"
+  >
+    {submissionData.github_link}
+  </a>
+</div>
                   </div>
 
                   <div>
@@ -689,7 +747,7 @@ export default function SubmitPPT() {
                   {loading && uploadProgress > 0 && (
                     <div className="space-y-2">
                       <div className="w-full bg-gray-900/50 rounded-full h-3 overflow-hidden">
-                        <div 
+                        <div
                           className="bg-gradient-to-r from-emerald-500 to-green-600 h-full transition-all duration-500 rounded-full"
                           style={{ width: `${uploadProgress}%` }}
                         ></div>
