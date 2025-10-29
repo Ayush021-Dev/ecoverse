@@ -571,10 +571,7 @@ export default function CreateTeam() {
                 <span className="text-yellow-400 font-bold">•</span>
                 <span>Team size must be between 2-4 members</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-yellow-400 font-bold">•</span>
-                <span>Resume link is <strong>optional</strong> for all members</span>
-              </li>
+              
               <li className="flex items-start gap-2">
                 <span className="text-yellow-400 font-bold">•</span>
                 <span>Payment receipt upload is mandatory (max 15MB image file)</span>
@@ -748,16 +745,7 @@ export default function CreateTeam() {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
-                      <input
-                        type="url"
-                        value={leaderData.resumeLink}
-                        onChange={(e) => handleLeaderDataChange('resumeLink', e.target.value)}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-emerald-400/30 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition-colors"
-                        placeholder="Google Drive link or any accessible URL"
-                      />
-                    </div>
+                    
                   </div>
 
                   {/* Other Members */}
@@ -799,16 +787,7 @@ export default function CreateTeam() {
                         />
                       </div>
 
-                      <div>
-                        <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
-                        <input
-                          type="url"
-                          value={membersData[index].resumeLink}
-                          onChange={(e) => handleMemberDataChange(index, 'resumeLink', e.target.value)}
-                          className="w-full px-4 py-3 bg-gray-900/50 border border-emerald-400/30 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition-colors"
-                          placeholder="Google Drive link or any accessible URL"
-                        />
-                      </div>
+                      
                     </div>
                   ))}
 
@@ -1073,15 +1052,7 @@ export default function CreateTeam() {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
-                      <input
-                        type="url"
-                        value={leaderData.resumeLink}
-                        onChange={(e) => handleLeaderDataChange('resumeLink', e.target.value)}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-emerald-400/30 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition-colors"
-                      />
-                    </div>
+                    
                   </div>
 
                   {Array.from({ length: teamData.teamSize - 1 }).map((_, index) => (
@@ -1119,15 +1090,7 @@ export default function CreateTeam() {
                         />
                       </div>
 
-                      <div>
-                        <label className="block text-emerald-300 font-semibold mb-2">Resume Link (Optional)</label>
-                        <input
-                          type="url"
-                          value={membersData[index].resumeLink}
-                          onChange={(e) => handleMemberDataChange(index, 'resumeLink', e.target.value)}
-                          className="w-full px-4 py-3 bg-gray-900/50 border border-emerald-400/30 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition-colors"
-                        />
-                      </div>
+                      
                     </div>
                   ))}
 
