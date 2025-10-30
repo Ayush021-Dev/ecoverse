@@ -94,11 +94,11 @@ const Navbar: NextPage = () => {
       </nav>
 
       {/* CTA Button */}
-      <Link href="/create-team">
+      <a href="https://eventhubcc.vit.ac.in/EventHub/eventPreview">
         <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full hover:from-emerald-600 hover:to-green-700 transition-all transform hover:scale-105 font-semibold shadow-lg shadow-emerald-500/25">
           Register Now
         </button>
-      </Link>
+      </a>
     </header>
   )
 }
