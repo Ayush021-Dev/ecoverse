@@ -89,7 +89,7 @@ export default function Home() {
           </h1>
 
           <div className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-wider">
-            <span className="text-emerald-400">20</span>25
+            <span className="text-emerald-400">20</span>26
           </div>
         </div>
 
@@ -98,7 +98,7 @@ export default function Home() {
           <div className="bg-gradient-to-r from-emerald-900/50 to-green-900/50 backdrop-blur-lg border border-emerald-400/30 rounded-3xl px-12 py-6 shadow-2xl">
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-emerald-300 mb-2">
-                5th - 6th NOVEMBER
+                5th - 6th January
               </div>
               <div className="text-gray-400 text-sm">
                 24 Hours of Innovation

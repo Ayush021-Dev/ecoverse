@@ -66,10 +66,10 @@ export default function AboutEcoverse() {
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">What is EcoVerse?</h3>
               <p className="text-gray-200 mb-4">
-                EcoVerse 2025 is VIT Chennai&apos;s flagship sustainability hackathon that challenges participants to develop innovative solutions for environmental problems.
+                EcoVerse 2026 is VIT Chennai&apos;s flagship sustainability hackathon that challenges participants to develop innovative solutions for environmental problems.
               </p>
               <p className="text-gray-200">
-                Join 300+ participants in creating technology-driven solutions that align with UN Sustainable Development Goals.
+                Join 200+ participants in creating technology-driven solutions that align with UN Sustainable Development Goals.
               </p>
               
               {/* Key Features */}
@@ -80,7 +80,7 @@ export default function AboutEcoverse() {
                 </div>
                 <div className="flex items-center text-emerald-300">
                   <span className="text-emerald-400 mr-3">👥</span>
-                  <span className="text-sm">300+ participants from across Tamil Nadu</span>
+                  <span className="text-sm">200+ participants from across Tamil Nadu</span>
                 </div>
                 <div className="flex items-center text-emerald-300">
                   <span className="text-emerald-400 mr-3">🎯</span>

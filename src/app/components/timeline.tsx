@@ -2,14 +2,14 @@ export default function Timeline() {
   const timelineEvents = [
     {
       id: 1,
-      date: "20th OCT",
+      date: "20th DEC",
       title: "Registration starts",
       type: "start",
       side: "left"
     },
     {
       id: 2,
-      date: "2nd NOV",
+      date: "4th JAN",
       title: "Registration ends",
       subtitle: "",
       type: "deadline",
@@ -17,13 +17,13 @@ export default function Timeline() {
     },
     {
       id: 3,
-      date: "5th & 6th NOV",
+      date: "5th & 6th JAN",
       title: "ECOVERSE STARTS",
       subtitle: "STIM",
       details: [
-        "REVIEW 1 - NOV 5th afternoon",
-        "REVIEW 2 - NOV 5th evening", 
-        "REVIEW 3 - NOV 6th morning"
+        "REVIEW 1 - JAN 5th afternoon",
+        "REVIEW 2 - JAN 5th evening", 
+        "REVIEW 3 - JAN 6th morning"
       ],
       type: "event",
       side: "left"
