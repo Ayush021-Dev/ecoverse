@@ -170,7 +170,7 @@ export default function Home() {
         {/* Stats Section */}
         <div className="grid grid-cols-3 gap-4 md:gap-16 mb-6 max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold text-emerald-400">300+</div>
+            <div className="text-2xl md:text-3xl font-bold text-emerald-400">200+</div>
             <div className="text-gray-400 text-xs md:text-sm">Participants</div>
           </div>
           <div className="text-center">
