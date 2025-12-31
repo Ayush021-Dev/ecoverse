@@ -30,7 +30,7 @@ export default function Timeline() {
     },
     {
       id: 4,
-      date: "6th NOV",
+      date: "6th JAN",
       title: "Final Evaluation",
       subtitle: "& Winners Announcement",
       type: "final",
