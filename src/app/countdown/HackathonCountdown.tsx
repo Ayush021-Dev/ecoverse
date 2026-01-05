@@ -255,7 +255,7 @@ export default function HackathonCountdown({
         <div className="mb-12">
           <div className="bg-gradient-to-r from-emerald-900/50 to-green-900/50 backdrop-blur-lg border-2 border-emerald-400/30 rounded-3xl p-8 md:p-12 shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-black text-emerald-300 mb-12 text-center">
-              🔥 Hackathon Timeline
+              Hackathon Timeline
             </h2>
 
             {/* Timeline Container */}
