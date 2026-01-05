@@ -19,7 +19,6 @@ export default function Timeline() {
       id: 3,
       date: "5th & 6th JAN",
       title: "ECOVERSE STARTS",
-      subtitle: "STIM",
       details: [
         "REVIEW 1 - JAN 5th afternoon",
         "REVIEW 2 - JAN 5th evening", 

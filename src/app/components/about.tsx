@@ -35,7 +35,7 @@ export default function About() {
 
           <div className="max-w-3xl mx-auto">
             <p className="text-xl text-gray-300 leading-relaxed">
-              Discover the vision and mission behind EcoVerse 2025 and meet the organizations driving sustainable innovation.
+              Discover the vision and mission behind EcoVerse 2026 and meet the organizations driving sustainable innovation.
             </p>
             <div className="flex items-center justify-center space-x-4 mt-6">
               <div className="h-px w-20 bg-gradient-to-r from-transparent to-emerald-400"></div>

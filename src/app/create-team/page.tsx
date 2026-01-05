@@ -555,7 +555,7 @@ export default function CreateTeam() {
               </span>
             </h1>
             <p className="text-gray-400 text-lg">
-              Ecoverse 2025
+              Ecoverse 2026
             </p>
           </div>
 
