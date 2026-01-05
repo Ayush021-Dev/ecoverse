@@ -69,7 +69,7 @@ export default function AboutEcoverse() {
                 EcoVerse 2026 is VIT Chennai&apos;s flagship sustainability hackathon that challenges participants to develop innovative solutions for environmental problems.
               </p>
               <p className="text-gray-200">
-                Join 200+ participants in creating technology-driven solutions that align with UN Sustainable Development Goals.
+                Join us in creating technology-driven solutions that align with UN Sustainable Development Goals.
               </p>
               
               {/* Key Features */}
@@ -80,7 +80,7 @@ export default function AboutEcoverse() {
                 </div>
                 <div className="flex items-center text-emerald-300">
                   <span className="text-emerald-400 mr-3">👥</span>
-                  <span className="text-sm">200+ participants from across Tamil Nadu</span>
+                  <span className="text-sm">Participants from across Tamil Nadu</span>
                 </div>
                 <div className="flex items-center text-emerald-300">
                   <span className="text-emerald-400 mr-3">🎯</span>
