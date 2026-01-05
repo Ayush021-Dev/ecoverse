@@ -18,7 +18,7 @@ export default function CountdownPage() {
     <HackathonCountdown 
       hackathonStartTime="2026-01-05T10:00:00" // 10 AM start
       reviews={reviews}
-      finalSubmissionTime="2026-01-06T10:00:00" // Final deadline
+      finalSubmissionTime="2026-01-06T09:30:00" // Final deadline
       eventName="Ecoverse 2026"
     />
   )
