@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
   { label: 'Tracks', href: '#tracks' },
   { label: 'Timeline', href: '#timeline' },
   { label: 'Sponsors', href: '#sponsorship' },
-  { label: 'About', href: '#about' },  
+  { label: 'About', href: '#about' },
   { label: 'More Info', href: '#coordinators' },
 ]
 
@@ -25,7 +25,7 @@ const Navbar: NextPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
-      
+
       // If near top, set home as active
       if (scrollY < 200) {
         setActiveSection('home')
@@ -33,13 +33,13 @@ const Navbar: NextPage = () => {
       }
 
       const sections = ['about', 'timeline', 'tracks', 'sponsorship', 'coordinators']
-      
+
       sections.forEach((section) => {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
           const elementTop = window.scrollY + rect.top
-          
+
           if (scrollY >= elementTop - 200 && scrollY < elementTop + element.offsetHeight - 200) {
             setActiveSection(section)
           }
@@ -49,7 +49,7 @@ const Navbar: NextPage = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll() // Check initial position
-    
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -57,7 +57,7 @@ const Navbar: NextPage = () => {
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 md:p-6 backdrop-blur-sm max-w-7xl mx-auto">
       {/* Logo Section */}
       <div className="flex items-center space-x-4">
-       <div className="w-12 h-12 bg-gradient-to-r from-emerald-950 to-gray-900 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25 relative overflow-hidden">
+        <div className="w-12 h-12 bg-gradient-to-r from-emerald-950 to-gray-900 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25 relative overflow-hidden">
 
           <Image
             src="/Ecoverse3.png"
@@ -83,9 +83,8 @@ const Navbar: NextPage = () => {
             <Link
               key={href}
               href={href}
-              className={`transition-all duration-300 border-b-2 border-transparent hover:text-emerald-400 hover:border-emerald-400 ${
-                isActive ? 'text-emerald-400 border-emerald-400' : ''
-              }`}
+              className={`transition-all duration-300 border-b-2 border-transparent hover:text-emerald-400 hover:border-emerald-400 ${isActive ? 'text-emerald-400 border-emerald-400' : ''
+                }`}
             >
               {label}
             </Link>
@@ -94,11 +93,12 @@ const Navbar: NextPage = () => {
       </nav>
 
       {/* CTA Button */}
-      <a href="https://eventhubcc.vit.ac.in/EventHub/eventPreview">
+      <Link href="/submit-ppt">
         <button className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-full hover:from-emerald-600 hover:to-green-700 transition-all transform hover:scale-105 font-semibold shadow-lg shadow-emerald-500/25">
-          Register Now
+          Submit PPT
         </button>
-      </a>
+      </Link>
+
     </header>
   )
 }
